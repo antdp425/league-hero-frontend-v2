@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 function App() {
   return (
@@ -8,4 +9,11 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    leagues: state.leagues,
+    teams: state.teams
+  }
+}
+
+export default connect(mapStateToProps)(App)
