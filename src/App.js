@@ -4,23 +4,25 @@ import { connect } from 'react-redux';
 import {useState, useEffect} from "react"
 import {fetchLeagues} from './actions/leagues'
 import {fetchTeams} from './actions/teams'
+import Home from './containers/HomeContainer'
 import LeaguesContainer from './containers/LeaguesContainer'
 import TeamsContainer from './containers/TeamsContainer'
-
 
 function App(props) {
 
   useEffect(() => {
-    // Update the document title using the browser API
     props.fetchLeagues()
     props.fetchTeams()
   },[])
 
   return (
-    <>
-    <LeaguesContainer />
-    <TeamsContainer />
-    </>
+    <Router>
+      <>
+        <Route exact path="/" render={Home}/>
+        <Route exact path="/leagues" render={LeaguesContainer}/>
+        <Route exact path="/teams" render={TeamsContainer} />
+      </>
+    </Router>
   );
 }
 
