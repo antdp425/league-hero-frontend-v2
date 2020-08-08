@@ -21,8 +21,8 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    leagues: state.leagues,
-    teams: state.teams
+    leagues: state.leaguesReducer.leagues,
+    teams: state.teamsReducer.teams
   }
 }
 

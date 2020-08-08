@@ -1,4 +1,4 @@
-export function leagues( state = { leagues: [], loading: false}, action){
+export default ( state = { leagues: [], loading: false}, action) => {
    switch (action.type) {
       case "FETCHING_LEAGUES":
          return {

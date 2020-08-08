@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import {leagues} from './leagues'
-import {teams} from './teams'
+import leaguesReducer from './leagues'
+import teamsReducer from './teams'
 
 export const rootReducer = combineReducers({
-   leagues,
-   teams
+   leaguesReducer,
+   teamsReducer
 })

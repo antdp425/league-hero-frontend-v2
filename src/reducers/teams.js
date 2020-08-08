@@ -1,4 +1,4 @@
-export function teams( state = { teams: []}, action){ 
+export default( state = { teams: []}, action) => { 
    switch (action.type) {
       case "FETCHING_TEAMS":
          return {
