@@ -1,3 +1,3 @@
-export function teams( state = { teams: ["hi"]}, action){ 
+export function teams( state = { teams: []}, action){ 
    return state
 }

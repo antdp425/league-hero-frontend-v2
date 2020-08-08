@@ -1,3 +1,3 @@
-export function leagues( state = { leagues: ["yo"]}, action){ 
+export function leagues( state = { leagues: []}, action){ 
    return state
 }

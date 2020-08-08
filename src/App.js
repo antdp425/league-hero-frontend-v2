@@ -1,7 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {useState, useEffect} from "react"
+import {fetchLeagues} from './actions/leagues'
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.fetchLeagues()
+  },)
+
   return (
     <div>
       Hi
@@ -16,4 +23,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, {fetchLeagues})(App)
