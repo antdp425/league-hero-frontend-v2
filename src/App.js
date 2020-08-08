@@ -6,8 +6,9 @@ import {fetchLeagues} from './actions/leagues'
 function App(props) {
 
   useEffect(() => {
+    // Update the document title using the browser API
     props.fetchLeagues()
-  },)
+  },[])
 
   return (
     <div>
