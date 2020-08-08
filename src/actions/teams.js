@@ -3,6 +3,6 @@ export const fetchTeams = () => {
       dispatch({type: "FETCHING_TEAMS"})
       fetch("/teams")
       .then(resp => resp.json())
-      .then(date => console.log(date))
+      .then(data =>  dispatch({type: "TEAMS_FETCHED", payload: data}))
    }
 }
