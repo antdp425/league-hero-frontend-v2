@@ -1,8 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {useState, useEffect} from "react"
 import {fetchLeagues} from './actions/leagues'
 import {fetchTeams} from './actions/teams'
+import LeaguesContainer from './containers/LeaguesContainer'
+import TeamsContainer from './containers/TeamsContainer'
+
 
 function App(props) {
 
@@ -13,9 +17,10 @@ function App(props) {
   },[])
 
   return (
-    <div>
-      Hi
-    </div>
+    <>
+    <LeaguesContainer />
+    <TeamsContainer />
+    </>
   );
 }
 
