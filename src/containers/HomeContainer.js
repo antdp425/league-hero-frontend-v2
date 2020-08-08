@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {fetchLeagues} from '../actions/leagues'
 import {fetchTeams} from '../actions/teams'
 
-function HomeContainer({leagues, teams, fetchLeagues, fetchTeams}) {
+function HomeContainer({leagues, leaguesLoading, teams, teamsLoading, fetchLeagues, fetchTeams}) {
 
    useEffect(() => {
       fetchLeagues()
@@ -13,9 +13,9 @@ function HomeContainer({leagues, teams, fetchLeagues, fetchTeams}) {
 
    return (
       <div>
-         {teams.length} Team(s)
+         { teamsLoading ? "Loading..." : `${teams.length} Teams(s)`}
          <br/>
-         {leagues.length} League(s)
+         { leaguesLoading ? "Loading..." : `${leagues.length} Leagues(s)`}
       </div>
    )
 }
@@ -23,8 +23,11 @@ function HomeContainer({leagues, teams, fetchLeagues, fetchTeams}) {
 const mapStateToProps = (state) => {
    return {
      leagues: state.leaguesReducer.leagues,
-     teams: state.teamsReducer.teams
+     leaguesLoading: state.leaguesReducer.loading,
+
+     teams: state.teamsReducer.teams,
+     teamsLoading: state.leaguesReducer.loading
    }
  }
  
- export default connect(mapStateToProps, {fetchTeams, fetchLeagues})(HomeContainer)
+ export default connect(mapStateToProps,{fetchTeams, fetchLeagues})(HomeContainer)

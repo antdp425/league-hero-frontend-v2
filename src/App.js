@@ -11,9 +11,9 @@ function App() {
     <Router>
       <>
         <Navbar />
-        <Route exact path="/" component={(routerProps) => <HomeContainer {...routerProps}/>}/>
-        <Route exact path="/leagues" render={LeaguesContainer} />
-        <Route exact path="/teams" render={TeamsContainer} />
+        <Route exact path="/" render={() => <HomeContainer />}/>
+        <Route exact path="/leagues" render={() => <LeaguesContainer />} />
+        <Route exact path="/teams" render={() => <TeamsContainer />} />
       </>
     </Router>
   );
