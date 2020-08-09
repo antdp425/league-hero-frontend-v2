@@ -12,8 +12,8 @@ function App() {
       <>
         <Navbar />
         <Route exact path="/" render={() => <HomeContainer />}/>
-        <Route exact path="/leagues" render={(routerProps) => <LeaguesContainer {...routerProps}/>} />
-        <Route exact path="/teams" render={(routerProps) => <TeamsContainer {...routerProps}/>} />
+        <Route path="/leagues" render={(routerProps) => <LeaguesContainer {...routerProps} />} />
+        <Route path="/teams" render={(routerProps) => <TeamsContainer {...routerProps} />} />
       </>
     </Router>
   );

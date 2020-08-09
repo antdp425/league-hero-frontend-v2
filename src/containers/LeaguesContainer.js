@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import {fetchLeagues} from '../actions/leagues'
 import LeagueList from '../components/LeagueList'
 import { Route } from 'react-router-dom';
+import LeagueShow from '../components/LeagueShow';
 
-function LeaguesContainer({leagues, leaguesLoading, fetchLeagues}) {
+function LeaguesContainer({match, leagues, leaguesLoading, fetchLeagues}) {
 
    useEffect(() => {
       fetchLeagues()
@@ -14,6 +15,11 @@ function LeaguesContainer({leagues, leaguesLoading, fetchLeagues}) {
    return (
       <div>
         {<LeagueList leagues={leagues} />}
+
+        <Route path={`${match.url}/:leagueId`} 
+               render={(routerProps) => 
+                <LeagueShow {...routerProps} leagues={leagues}/>} 
+              />
       </div>
    )
 }

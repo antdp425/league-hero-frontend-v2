@@ -5,7 +5,7 @@ function LeagueList({leagues}) {
 
    const list = leagues.map(league => 
       <div key={league.id}> 
-            <Link to={`/leagues/${league.id}`}>{league.name} <br/></Link>
+         <Link to={`/leagues/${league.id}`}> {league.name} <br/> </Link>
       </div>
    )
 
