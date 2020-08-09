@@ -2,6 +2,8 @@ import React from 'react'
 import {useEffect} from "react"
 import { connect } from 'react-redux';
 import {fetchTeams} from '../actions/teams'
+import TeamList from '../components/TeamList'
+
 
 function TeamsContainer({teams, teamsLoading, fetchTeams}) {
 
@@ -11,7 +13,7 @@ function TeamsContainer({teams, teamsLoading, fetchTeams}) {
 
    return (
       <div>
-         Teams
+         {teams.map(team => <TeamList team={team}/>)}
       </div>
    )
 }

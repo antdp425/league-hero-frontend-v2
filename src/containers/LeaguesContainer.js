@@ -2,6 +2,8 @@ import React from 'react'
 import {useEffect} from "react"
 import { connect } from 'react-redux';
 import {fetchLeagues} from '../actions/leagues'
+import LeagueList from '../components/LeagueList'
+import { Route } from 'react-router-dom';
 
 function LeaguesContainer({leagues, leaguesLoading, fetchLeagues}) {
 
@@ -11,7 +13,7 @@ function LeaguesContainer({leagues, leaguesLoading, fetchLeagues}) {
 
    return (
       <div>
-         Leagues
+        {<LeagueList leagues={leagues} />}
       </div>
    )
 }
