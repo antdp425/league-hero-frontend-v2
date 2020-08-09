@@ -3,9 +3,11 @@ import {useEffect} from "react"
 import { connect } from 'react-redux';
 import {fetchTeams} from '../actions/teams'
 import TeamList from '../components/TeamList'
+import { Route } from 'react-router-dom';
+import TeamShow from '../components/TeamShow';
 
 
-function TeamsContainer({teams, teamsLoading, fetchTeams}) {
+function TeamsContainer({match, teams, teamsLoading, fetchTeams}) {
 
    useEffect(() => {
       fetchTeams()
@@ -13,7 +15,12 @@ function TeamsContainer({teams, teamsLoading, fetchTeams}) {
 
    return (
       <div>
-         {teams.map(team => <TeamList team={team}/>)}
+        {<TeamList teams={teams} />}
+
+        <Route path={`${match.url}/:teamId`} 
+               render={(routerProps) => 
+                <TeamShow {...routerProps} teams={teams}/>} 
+              />
       </div>
    )
 }

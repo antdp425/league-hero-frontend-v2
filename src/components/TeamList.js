@@ -1,11 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Team({team}) {
+function TeamList({teams}) {
+
+   const list = teams.map(team => 
+      <div key={team.id}> 
+         <Link to={`/teams/${team.id}`}> {team.name} <br/> </Link>
+      </div>
+   )
+
    return (
       <div>
-         {team.name}
+         {list}
       </div>
    )
 }
 
-export default Team
+export default TeamList
