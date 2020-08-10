@@ -21,7 +21,7 @@ export const addLeague = (leagueInfo) => {
    return (dispatch) => {
       dispatch({type: "ADDING_LEAGUE"})
       fetch("/leagues", configObj)
-      // .then(resp => resp.json())
-   //    .then(data => dispatch({type: "LEAGUES_FETCHED", payload: data}))
+      .then(resp => resp.json())
+      .then(data => dispatch({type: "LEAGUE_ADDED", payload: data}))
    }
 }

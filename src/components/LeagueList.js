@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
+
+
 function LeagueList({leagues}) {
 
    const list = leagues.map(league => 

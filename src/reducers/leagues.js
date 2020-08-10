@@ -11,11 +11,25 @@ export default ( state = { leagues: [], loading: false}, action) => {
             leagues: [...action.payload],
             loading: false
          }
+
       case "ADDING_LEAGUE":
          return {
-            ...state,
-            loading: true
+            ...state
          }
+
+      case "LEAGUE_ADDED":
+         if (action.payload.errors){
+            return {
+               ...state,
+               errors: action.payload.errors
+            }
+         } else {  
+            return {
+               ...state,
+               leagues: [...state.leagues, action.payload]
+            }       
+      }  
+
       default:
          return state
    }
