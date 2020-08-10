@@ -18,6 +18,7 @@ function LeaguesContainer({match, leagues, leaguesLoading, fetchLeagues}) {
 
       <div>
         {<LeagueList leagues={leagues} />}
+        
         <Switch>
 
           <Route path={`${match.url}/new`} 

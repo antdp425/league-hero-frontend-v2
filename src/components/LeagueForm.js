@@ -1,20 +1,31 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { addLeague } from '../actions/leagues'
 
-
-function LeagueForm() {
+function LeagueForm({addLeague}) {
 
    const formats = ["3v3", "5v5", "7v7", "11v11"]
    const [leagueName, setLeagueName] = useState("")
    const [leagueFormat, setLeagueFormat] = useState("")
-   const [leageStart, setLeageStart] = useState("")
-   const [leageEnd, setLeageEnd] = useState("")
+   const [leagueStart, setLeagueStart] = useState("")
+   const [leagueEnd, setLeagueEnd] = useState("")
+
+   const handleSubmit = (e) => {
+      e.preventDefault()
+      addLeague({
+         name: leagueName,
+         league_format: leagueFormat,
+         start_date: leagueStart,
+         end_date: leagueEnd
+      })
+   }
 
    return (
       <div>
          <hr/>
-         <form>
+         <form onSubmit={handleSubmit}>
             <input
-               name="leagueName" 
+               name="league_name" 
                value={leagueName}
                onChange={(e) => setLeagueName(e.target.value)}
                type="text"/> <br/>
@@ -22,18 +33,19 @@ function LeagueForm() {
                required 
                value={leagueFormat}
                onChange={(e) => setLeagueFormat(e.target.value)} 
-               name="leagueFormat">
+               name="league_format">
                   <option value="">Select a League Format</option>
                   {formats.map(format => <option>{format}</option>)}
             </select><br/>
             <input 
                name="start_date"
-               // onChange={(e) => setLeageStart(e.target.value)}
-               value={leageStart} 
+               onChange={(e) => setLeagueStart(e.target.value)}
+               value={leagueStart} 
                type="date"/><br/>
             <input 
                name="end_date"
-               value={leageEnd} 
+               onChange={(e) => setLeagueEnd(e.target.value)}
+               value={leagueEnd} 
                type="date"/><br/>
             <input type="submit"/>
          </form>
@@ -41,4 +53,4 @@ function LeagueForm() {
    )
 }
 
-export default LeagueForm
+export default connect(null,{addLeague})(LeagueForm)
