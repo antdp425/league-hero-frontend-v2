@@ -1,15 +1,7 @@
 import React from 'react'
-import {useEffect} from "react"
 import { connect } from 'react-redux';
-import {fetchLeagues} from '../actions/leagues'
-import {fetchTeams} from '../actions/teams'
 
-function HomeContainer({leagues, leaguesLoading, teams, teamsLoading, fetchLeagues, fetchTeams}) {
-
-   useEffect(() => {
-      fetchLeagues()
-      fetchTeams()
-    },[])
+function HomeContainer({leagues, leaguesLoading, teams, teamsLoading}) {
 
    return (
       <div>
@@ -29,5 +21,5 @@ const mapStateToProps = (state) => {
      teamsLoading: state.leaguesReducer.loading
    }
  }
- 
- export default connect(mapStateToProps,{fetchTeams, fetchLeagues})(HomeContainer)
+
+export default connect(mapStateToProps)(HomeContainer)

@@ -1,5 +1,4 @@
 import React from 'react'
-import {useEffect} from "react"
 import { connect } from 'react-redux';
 import {fetchLeagues} from '../actions/leagues'
 import { Route, Switch } from 'react-router-dom';
@@ -8,11 +7,7 @@ import LeagueShow from '../components/leagues/LeagueShow';
 import LeagueForm from '../components/leagues/LeagueForm';
 
 
-function LeaguesContainer({match, leagues, leaguesLoading, fetchLeagues}) {
-
-  useEffect(() => {
-      fetchLeagues()
-    },[])
+function LeaguesContainer({match, leagues, leaguesLoading}) {
 
    return (
 

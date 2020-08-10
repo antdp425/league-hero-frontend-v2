@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-// import { addTeam } from '../../actions/teams'
+import { addTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 
-function TeamForm({teams, leagues, addLeague, errors}) {
+function TeamForm({teams, leagues, addTeam, errors}) {
 
    useEffect(() => {
       clearForm()
@@ -44,23 +44,23 @@ function TeamForm({teams, leagues, addLeague, errors}) {
             <select
                required 
                value={teamLeague}
-               onChange={(e) => setTeamEmail(e.target.value)} 
+               onChange={(e) => setTeamLeague(e.target.value)} 
                name="team_league">
                   <option value="">Select a League</option>
-                  {leagues.map(league => <option>{league}</option>)}
+                  {leagues.map(league => <option value={league.id}>{league.name}</option>)}
             </select><br/>
             {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
             <input 
-               name="start_date"
-               onChange={(e) => setTeamPhone(e.target.value)}
-               value={teamPhone} 
-               type="date"/><br/>
+               name="email"
+               onChange={(e) => setTeamEmail(e.target.value)}
+               value={teamEmail} 
+               type="email"/><br/>
             {/* FIX ME <small>{errors && errors.start_date}</small>  */}
             <input 
-               name="end_date"
-               onChange={(e) => setTeamLeague(e.target.value)}
-               value={teamEmail} 
-               type="date"/><br/>
+               name="phone"
+               onChange={(e) => setTeamPhone(e.target.value)}
+               value={teamPhone} 
+               type="text"/><br/>
             {/* FIX ME <small>{errors && errors.end_date}</small> <br/> */}
             <input type="submit"/>
          </form>

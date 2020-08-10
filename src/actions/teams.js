@@ -6,3 +6,22 @@ export const fetchTeams = () => {
       .then(data =>  dispatch({type: "TEAMS_FETCHED", payload: data}))
    }
 }
+
+export const addTeam = (teamInfo) => {
+
+   let configObj = {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         "Accept": "application/json"
+         },
+         body: JSON.stringify(teamInfo)
+   }
+
+   return (dispatch) => {
+      dispatch({type: "ADDING_TEAM"})
+      fetch("/teams/", configObj)
+      .then(resp => resp.json())
+      .then(data => dispatch({type: "TEAM_ADDED", payload: data}))
+   }
+}

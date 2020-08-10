@@ -1,28 +1,22 @@
 import React from 'react'
 import {useEffect} from "react"
 import { connect } from 'react-redux';
-import {fetchTeams} from '../actions/teams'
 import { Route, Switch } from 'react-router-dom';
 import TeamList from '../components/teams/TeamList'
 import TeamShow from '../components/teams/TeamShow';
 import TeamForm from '../components/teams/TeamForm';
 
 
-function TeamsContainer({match, teams, teamsLoading, fetchTeams}) {
-
-   useEffect(() => {
-      fetchTeams()
-    },[])
+function TeamsContainer({match, leagues, teams, teamsLoading, fetchLeagues, fetchTeams}) {
 
    return (
-      <div>
+     <div>
+     {<TeamList teams={teams} />}
         <Switch>
-
-        {<TeamList teams={teams} />}
 
         <Route path={`${match.url}/new`} 
                 render={(routerProps) => 
-                  <TeamForm {...routerProps} />} 
+                  <TeamForm {...routerProps} leagues={leagues}/>} 
               />
 
         <Route path={`${match.url}/:teamId`} 
@@ -37,9 +31,10 @@ function TeamsContainer({match, teams, teamsLoading, fetchTeams}) {
 
 const mapStateToProps = (state) => {
    return {
+     leagues: state.leaguesReducer.leagues,
      teams: state.teamsReducer.teams,
      teamsLoading: state.teamsReducer.loading
    }
  }
  
- export default connect(mapStateToProps,{fetchTeams})(TeamsContainer)
+ export default connect(mapStateToProps)(TeamsContainer)
