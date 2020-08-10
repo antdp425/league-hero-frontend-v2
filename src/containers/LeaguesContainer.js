@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import LeagueList from '../components/leagues/LeagueList'
 import LeagueShow from '../components/leagues/LeagueShow';
 import LeagueForm from '../components/leagues/LeagueForm';
+import LeagueEditForm from '../components/leagues/LeagueEditForm';
+
 
 
 function LeaguesContainer({match, leagues, leaguesLoading}) {
@@ -21,10 +23,16 @@ function LeaguesContainer({match, leagues, leaguesLoading}) {
                   <LeagueForm {...routerProps} />} 
               />
 
+        <Route path={`${match.url}/:leagueId/edit`} 
+              render={(routerProps) => 
+                <LeagueEditForm {...routerProps} leagues={leagues}/>} 
+              />
+
           <Route path={`${match.url}/:leagueId`} 
                 render={(routerProps) => 
-                  <LeagueShow {...routerProps} leagues={leagues}/>} 
+                  <LeagueShow {...routerProps} leagues={leagues} />} 
                 />
+
 
       </Switch>
       </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 
-function TeamForm({teams, leagues, addTeam, errors}) {
+function TeamForm({match, teams, leagues, addTeam, errors}) {
 
    useEffect(() => {
       clearForm()

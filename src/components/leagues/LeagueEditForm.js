@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { addLeague } from '../../actions/leagues'
+import { editLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
 
-function LeagueForm({match, league, leagues, addLeague, errors}) {
+function LeagueEditForm({match, leagues, league, editLeague, errors}) {
 
    useEffect(() => {
-      clearForm()
-    },[leagues])
-
-
+      setLeagueName(league && league.name)
+      setLeagueFormat(league && league.league_format)
+      setLeagueStart(league && league.start_date)
+      setLeagueEnd(league && league.end_date)
+    },[league])
 
    const formats = ["3v3", "5v5", "7v7", "11v11"]
    const [leagueName, setLeagueName] = useState("")
@@ -17,60 +18,53 @@ function LeagueForm({match, league, leagues, addLeague, errors}) {
    const [leagueStart, setLeagueStart] = useState("")
    const [leagueEnd, setLeagueEnd] = useState("")
 
-   const clearForm = () => {
-      setLeagueName("")
-      setLeagueFormat("")
-      setLeagueStart("")
-      setLeagueEnd("")
-   }
-
    const handleSubmit = (e) => {
       e.preventDefault()
-      addLeague({
+      editLeague({
          name: leagueName,
          league_format: leagueFormat,
          start_date: leagueStart,
          end_date: leagueEnd
-      })
+      }, match.params.leagueId)
    }
 
    return (
       <div>
          <hr/>
          <form onSubmit={handleSubmit}>
-         <label for="league_name">Name: </label>
+         <label htmlFor="league_name">Name: </label>
             <input
                id="league_name"
                name="league_name" 
-               value={leagueName}
                onChange={(e) => setLeagueName(e.target.value)}
+               defaultValue={leagueName}
                type="text"/> <br/>
             {/* FIX ME <small>{errors && errors.league_name}</small> */}
-         <label for="league_format">Format: </label>
+         <label htmlFor="league_format">Format: </label>
             <select
                required 
-               value={leagueFormat}
+               defaultValue={league && league.league_format}
                onChange={(e) => setLeagueFormat(e.target.value)}
                id="league_format" 
                name="league_format">
-                  <option value="">Select a League Format</option>
-                  {formats.map(format => <option>{format}</option>)}
+                  <option value={league && league.league_format}>{league && league.league_format}</option>
+                  {formats.map(format => <option key={format}>{format}</option>)}
             </select><br/>
             {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
-         <label for="start_date">League Start: </label>
+         <label htmlFor="start_date">League Start: </label>
             <input
                id="start_date" 
                name="start_date"
                onChange={(e) => setLeagueStart(e.target.value)}
-               value={leagueStart} 
+               defaultValue={league && league.start_date} 
                type="date"/><br/>
             {/* FIX ME <small>{errors && errors.start_date}</small>  */}
-         <label for="end_date">League End: </label>
+         <label htmlFor="end_date">League End: </label>
             <input 
                id="end_date"
                name="end_date"
                onChange={(e) => setLeagueEnd(e.target.value)}
-               value={leagueEnd} 
+               defaultValue={league && league.end_date} 
                type="date"/><br/>
             {/* FIX ME <small>{errors && errors.end_date}</small> <br/> */}
             <input type="submit"/>
@@ -80,12 +74,12 @@ function LeagueForm({match, league, leagues, addLeague, errors}) {
 }
 
 
-const mapStateToProps = (state, {leagues, match}) => {
+const mapStateToProps = (state, {match}) => {
    return {
-      league: leagues.find(league => league.id == match.params.leagueId),
+      league: state.leaguesReducer.leagues.find(league => league.id == match.params.leagueId),
       leagues: state.leaguesReducer.leagues,
       errors: state.leaguesReducer.errors
    }
 }
 
-export default connect(mapStateToProps,{addLeague})(LeagueForm)
+export default connect(mapStateToProps,{editLeague})(LeagueEditForm)

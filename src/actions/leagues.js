@@ -25,3 +25,21 @@ export const addLeague = (leagueInfo) => {
       .then(data => dispatch({type: "LEAGUE_ADDED", payload: data}))
    }
 }
+
+export const editLeague = (leagueInfo, leagueId) => {
+   let configObj = {
+      method: "PATCH",
+      headers: {
+         "Content-Type": "application/json",
+         "Accept": "application/json"
+         },
+         body: JSON.stringify(leagueInfo)
+   }
+
+   return (dispatch) => {
+      dispatch({type: "EDITING_LEAGUE"})
+      fetch(`/leagues/${leagueId}`, configObj)
+      .then(resp => resp.json())
+      .then(data => dispatch({type: "LEAGUE_EDITED", payload: data}))
+   }
+}

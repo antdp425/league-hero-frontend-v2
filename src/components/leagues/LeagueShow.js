@@ -2,7 +2,7 @@ import React from 'react'
 
 function LeagueShow({match, leagues}) {
 
-   const league= leagues.find(league => league.id == match.params.leagueId)
+   const league = leagues.find(league => league.id == match.params.leagueId)
 
    return (
       <div>

@@ -30,6 +30,26 @@ export default ( state = { leagues: [], loading: false}, action) => {
             }       
       }  
 
+      case "EDITING_LEAGUE":
+         return {
+            ...state
+         }
+
+      case "LEAGUE_EDITED":
+         if (action.payload.errors){
+            return {
+               ...state,
+               errors: action.payload.errors
+            }
+         } else {  
+            return {
+               ...state,
+               leagues: state.leagues.map(league => {
+                  return league.id == action.payload.id ? action.payload : league
+               })
+            }       
+      }  
+
       default:
          return state
    }
