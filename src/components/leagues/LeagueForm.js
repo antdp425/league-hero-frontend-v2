@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { addLeague } from '../actions/leagues'
+import { addLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
 
 function LeagueForm({leagues, addLeague, errors}) {

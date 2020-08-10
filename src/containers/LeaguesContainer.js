@@ -3,9 +3,9 @@ import {useEffect} from "react"
 import { connect } from 'react-redux';
 import {fetchLeagues} from '../actions/leagues'
 import { Route, Switch } from 'react-router-dom';
-import LeagueList from '../components/LeagueList'
-import LeagueShow from '../components/LeagueShow';
-import LeagueForm from '../components/LeagueForm';
+import LeagueList from '../components/leagues/LeagueList'
+import LeagueShow from '../components/leagues/LeagueShow';
+import LeagueForm from '../components/leagues/LeagueForm';
 
 
 function LeaguesContainer({match, leagues, leaguesLoading, fetchLeagues}) {
