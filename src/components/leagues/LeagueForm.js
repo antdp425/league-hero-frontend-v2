@@ -36,28 +36,36 @@ function LeagueForm({leagues, addLeague, errors}) {
       <div>
          <hr/>
          <form onSubmit={handleSubmit}>
+         <label for="league_name">Name: </label>
             <input
+               id="league_name"
                name="league_name" 
                value={leagueName}
                onChange={(e) => setLeagueName(e.target.value)}
                type="text"/> <br/>
             {/* FIX ME <small>{errors && errors.league_name}</small> */}
+         <label for="league_format">Format: </label>
             <select
                required 
                value={leagueFormat}
-               onChange={(e) => setLeagueFormat(e.target.value)} 
+               onChange={(e) => setLeagueFormat(e.target.value)}
+               id="league_format" 
                name="league_format">
                   <option value="">Select a League Format</option>
                   {formats.map(format => <option>{format}</option>)}
             </select><br/>
             {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
-            <input 
+         <label for="start_date">League Start: </label>
+            <input
+               id="start_date" 
                name="start_date"
                onChange={(e) => setLeagueStart(e.target.value)}
                value={leagueStart} 
                type="date"/><br/>
             {/* FIX ME <small>{errors && errors.start_date}</small>  */}
+         <label for="end_date">League End: </label>
             <input 
+               id="end_date"
                name="end_date"
                onChange={(e) => setLeagueEnd(e.target.value)}
                value={leagueEnd} 
