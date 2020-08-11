@@ -10,8 +10,14 @@ function TeamsContainer({match, leagues, teams}) {
 
    return (
      <div>
-     {<TeamList teams={teams} />}
      <Switch>
+
+        <Route exact path ={`${match.url}`}
+                 render={(routerProps) => 
+                  <TeamList {...routerProps} teams={teams} />
+                 }>
+          </Route>
+
         <Route path={`${match.url}/new`} 
                 render={(routerProps) => 
                   <TeamForm {...routerProps} leagues={leagues}/>} 

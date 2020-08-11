@@ -12,29 +12,32 @@ import TeamEditForm from '../components/teams/TeamEditForm';
 function LeaguesContainer({match, leagues, leaguesLoading}) {
 
    return (
-
       <div>
-        {<LeagueList leagues={leagues} />}
-
         <Switch>
-        <Route path={`${match.url}/new`} 
-                render={(routerProps) => 
-                  <LeagueForm {...routerProps} />} 
-              />
-        <Route path={`${match.url}/:leagueId/edit`} 
-              render={(routerProps) => 
-                <LeagueEditForm {...routerProps} leagues={leagues}/>} 
-              />
+          <Route exact path ={`${match.url}`}
+                 render={(routerProps) => 
+                  <LeagueList {...routerProps} leagues={leagues} />
+                 }>
+          </Route>
 
-        <Route path={`/leagues/:leagueId/teams/:teamId/edit`} 
-                    render={(routerProps) => 
-                <TeamEditForm {...routerProps} leagues={leagues}/>} 
-              />
-
-          <Route path={`${match.url}/:leagueId`} 
-                render={(routerProps) => 
-                  <LeagueShow {...routerProps} leagues={leagues} />} 
+          <Route path={`${match.url}/new`} 
+                  render={(routerProps) => 
+                    <LeagueForm {...routerProps} />} 
                 />
+          <Route path={`${match.url}/:leagueId/edit`} 
+                render={(routerProps) => 
+                  <LeagueEditForm {...routerProps} leagues={leagues}/>} 
+                />
+
+          <Route path={`/leagues/:leagueId/teams/:teamId/edit`} 
+                      render={(routerProps) => 
+                  <TeamEditForm {...routerProps} leagues={leagues}/>} 
+                />
+
+            <Route path={`${match.url}/:leagueId`} 
+                  render={(routerProps) => 
+                    <LeagueShow {...routerProps} leagues={leagues} />} 
+                  />
         </Switch>
       </div>
    )
