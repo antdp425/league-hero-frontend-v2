@@ -18,17 +18,17 @@ export default ( state = { leagues: [], hasErrors: false, loading: false}, actio
          }
 
       case "LEAGUE_ADDED":
-         if (action.payload.errors){
             return {
                ...state,
-               errors: action.payload.errors
-            }
-         } else {  
-            return {
-               ...state,
+               hasErrors: false,
                leagues: [...state.leagues, action.payload]
             }       
-      }  
+      case "ERROR_ADDING_LEAGUE":
+         return {
+            ...state,
+            hasErrors: true,
+            errors: action.payload.errors
+         }
 
       case "EDITING_LEAGUE":
          return {
