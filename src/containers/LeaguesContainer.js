@@ -8,7 +8,6 @@ import LeagueForm from '../components/leagues/LeagueForm';
 import LeagueEditForm from '../components/leagues/LeagueEditForm';
 
 
-
 function LeaguesContainer({match, leagues, leaguesLoading}) {
 
    return (

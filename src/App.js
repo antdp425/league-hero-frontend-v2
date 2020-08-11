@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { fetchLeagues } from './actions/leagues';
 import { fetchTeams } from './actions/teams';
 
+
 function App({fetchLeagues, fetchTeams}) {
 
   useEffect(()=>{

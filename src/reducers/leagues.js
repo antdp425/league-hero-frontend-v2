@@ -1,4 +1,4 @@
-export default ( state = { leagues: [], loading: false}, action) => {
+export default ( state = { leagues: [], hasErrors: false, loading: false}, action) => {
    switch (action.type) {
       case "FETCHING_LEAGUES":
          return {
@@ -32,18 +32,20 @@ export default ( state = { leagues: [], loading: false}, action) => {
 
       case "EDITING_LEAGUE":
          return {
-            ...state
+            ...state,
          }
 
       case "LEAGUE_EDITED":
          if (action.payload.errors){
             return {
                ...state,
+               hasErrors: true,
                errors: action.payload.errors
             }
          } else {  
             return {
                ...state,
+               hasErrors: false,
                leagues: state.leagues.map(league => {
                   return league.id == action.payload.id ? action.payload : league
                })
