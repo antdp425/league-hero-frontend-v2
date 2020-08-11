@@ -32,6 +32,25 @@ export default( state = { teams: [], hasErrors: false}, action) => {
             }
       }
 
+      case "EDITING_TEAM":
+         return {
+            ...state,
+         }
+
+      case "TEAM_EDITED":
+            return {
+               ...state,
+               hasErrors: false,
+               teams: state.teams.map(team => {
+                  return team.id == action.payload.id ? action.payload : team
+               })
+            }
+      case "ERROR_EDITING_TEAM":
+            return {
+               ...state,
+               hasErrors: true,
+               errors: action.payload.errors
+            }
       default:
          return state
    }

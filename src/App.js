@@ -28,6 +28,5 @@ function App({fetchLeagues, fetchTeams}) {
   );
 }
 
-
 // export default App
 export default connect(null, {fetchLeagues, fetchTeams})(App)

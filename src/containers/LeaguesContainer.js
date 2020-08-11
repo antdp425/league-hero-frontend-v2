@@ -6,6 +6,7 @@ import LeagueList from '../components/leagues/LeagueList'
 import LeagueShow from '../components/leagues/LeagueShow';
 import LeagueForm from '../components/leagues/LeagueForm';
 import LeagueEditForm from '../components/leagues/LeagueEditForm';
+import TeamEditForm from '../components/teams/TeamEditForm';
 
 
 function LeaguesContainer({match, leagues, leaguesLoading}) {
@@ -14,26 +15,27 @@ function LeaguesContainer({match, leagues, leaguesLoading}) {
 
       <div>
         {<LeagueList leagues={leagues} />}
-        
-        <Switch>
 
-          <Route path={`${match.url}/new`} 
+        <Switch>
+        <Route path={`${match.url}/new`} 
                 render={(routerProps) => 
                   <LeagueForm {...routerProps} />} 
               />
-
         <Route path={`${match.url}/:leagueId/edit`} 
               render={(routerProps) => 
                 <LeagueEditForm {...routerProps} leagues={leagues}/>} 
+              />
+
+        <Route path={`/leagues/:leagueId/teams/:teamId/edit`} 
+                    render={(routerProps) => 
+                <TeamEditForm {...routerProps} leagues={leagues}/>} 
               />
 
           <Route path={`${match.url}/:leagueId`} 
                 render={(routerProps) => 
                   <LeagueShow {...routerProps} leagues={leagues} />} 
                 />
-
-
-      </Switch>
+        </Switch>
       </div>
    )
 }

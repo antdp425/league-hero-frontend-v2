@@ -6,14 +6,12 @@ import TeamList from '../components/teams/TeamList'
 import TeamShow from '../components/teams/TeamShow';
 import TeamForm from '../components/teams/TeamForm';
 
-
 function TeamsContainer({match, leagues, teams}) {
 
    return (
      <div>
      {<TeamList teams={teams} />}
-        <Switch>
-
+     <Switch>
         <Route path={`${match.url}/new`} 
                 render={(routerProps) => 
                   <TeamForm {...routerProps} leagues={leagues}/>} 
@@ -23,8 +21,7 @@ function TeamsContainer({match, leagues, teams}) {
                render={(routerProps) => 
                 <TeamShow {...routerProps} teams={teams}/>} 
               />
-
-        </Switch>
+      </Switch>
       </div>
    )
 }
