@@ -25,7 +25,8 @@ function LeagueEditForm({match, leagues, league, editLeague, hasErrors, errors})
          league_format: leagueFormat,
          start_date: leagueStart,
          end_date: leagueEnd
-      }, match.params.leagueId)
+      }, 
+         match.params.leagueId)
    }
 
    return (
@@ -56,7 +57,8 @@ function LeagueEditForm({match, leagues, league, editLeague, hasErrors, errors})
                id="start_date" 
                name="start_date"
                onChange={(e) => setLeagueStart(e.target.value)}
-               defaultValue={league && league.start_date} 
+               defaultValue={league && league.start_date}
+               value={leagueStart} 
                type="date"/><br/>
          { hasErrors && errors.start_date ? errors.start_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <label htmlFor="end_date">League End: </label>
@@ -64,7 +66,8 @@ function LeagueEditForm({match, leagues, league, editLeague, hasErrors, errors})
                id="end_date"
                name="end_date"
                onChange={(e) => setLeagueEnd(e.target.value)}
-               defaultValue={league && league.end_date} 
+               defaultValue={league && league.end_date}
+               value={leagueEnd} 
                type="date"/><br/>
          { hasErrors && errors.end_date ? errors.end_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
             <input type="submit"/>

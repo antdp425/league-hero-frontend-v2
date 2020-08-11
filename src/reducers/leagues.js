@@ -36,22 +36,19 @@ export default ( state = { leagues: [], hasErrors: false, loading: false}, actio
          }
 
       case "LEAGUE_EDITED":
-         if (action.payload.errors){
-            return {
-               ...state,
-               hasErrors: true,
-               errors: action.payload.errors
-            }
-         } else {  
             return {
                ...state,
                hasErrors: false,
                leagues: state.leagues.map(league => {
                   return league.id == action.payload.id ? action.payload : league
                })
-            }       
-      }  
-
+            }
+      case "ERROR_EDITING_LEAGUE":
+            return {
+               ...state,
+               hasErrors: true,
+               errors: action.payload.errors
+            }
       default:
          return state
    }

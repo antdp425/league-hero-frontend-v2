@@ -40,6 +40,10 @@ export const editLeague = (leagueInfo, leagueId) => {
       dispatch({type: "EDITING_LEAGUE"})
       fetch(`/leagues/${leagueId}`, configObj)
       .then(resp => resp.json())
-      .then(data => dispatch({type: "LEAGUE_EDITED", payload: data}))
+      .then(data => {
+         data.id ? 
+         dispatch({type: "LEAGUE_EDITED", payload: data}) : 
+         dispatch({type: "ERROR_EDITING_LEAGUE", payload: data})
+      })
    }
 }
