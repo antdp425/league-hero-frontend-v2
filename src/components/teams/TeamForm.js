@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 
-function TeamForm({match, teams, leagues, addTeam, errors}) {
+function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
 
    useEffect(() => {
       clearForm()
@@ -42,7 +42,7 @@ function TeamForm({match, teams, leagues, addTeam, errors}) {
                value={teamName}
                onChange={(e) => setTeamName(e.target.value)}
                type="text"/> <br/>
-            {/* FIX ME <small>{errors && errors.team_name}</small> */}
+         { hasErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
          <label for="team_league">League: </label>
             <select
                required 
@@ -53,7 +53,7 @@ function TeamForm({match, teams, leagues, addTeam, errors}) {
                   <option value="">Select a League</option>
                   {leagues.map(league => <option value={league.id}>{league.name}</option>)}
             </select><br/>
-            {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
+      { hasErrors && errors.league_id ? errors.league_id.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <label for="email">Contact Email: </label>
             <input
                id="email"
@@ -61,7 +61,7 @@ function TeamForm({match, teams, leagues, addTeam, errors}) {
                onChange={(e) => setTeamEmail(e.target.value)}
                value={teamEmail} 
                type="email"/><br/>
-            {/* FIX ME <small>{errors && errors.start_date}</small>  */}
+         { hasErrors && errors.email ? errors.email.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <label for="phone">Contact Phone: </label>
             <input
                id="phone" 
@@ -69,7 +69,7 @@ function TeamForm({match, teams, leagues, addTeam, errors}) {
                onChange={(e) => setTeamPhone(e.target.value)}
                value={teamPhone} 
                type="text"/><br/>
-            {/* FIX ME <small>{errors && errors.end_date}</small> <br/> */}
+         { hasErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
             <input type="submit"/>
          </form>
       </div>
@@ -80,6 +80,7 @@ const mapStateToProps = (state) => {
    return {
       leagues: state.leaguesReducer.leagues,
       teams: state.teamsReducer.teams,
+      hasErrors: !!state.teamsReducer.hasErrors,
       errors: state.teamsReducer.errors
    }
 }

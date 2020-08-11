@@ -44,7 +44,8 @@ function LeagueEditForm({match, leagues, league, editLeague, hasErrors, errors})
          <label htmlFor="league_format">Format: </label>
             <select
                required 
-               value={league && league.league_format}
+               defaultValue={league && league.league_format}
+               value={leagueFormat}
                onChange={(e) => setLeagueFormat(e.target.value)}
                id="league_format" 
                name="league_format">

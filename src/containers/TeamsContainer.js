@@ -7,7 +7,7 @@ import TeamShow from '../components/teams/TeamShow';
 import TeamForm from '../components/teams/TeamForm';
 
 
-function TeamsContainer({match, leagues, teams, teamsLoading, fetchLeagues, fetchTeams}) {
+function TeamsContainer({match, leagues, teams}) {
 
    return (
      <div>

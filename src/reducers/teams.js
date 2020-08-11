@@ -1,4 +1,4 @@
-export default( state = { teams: []}, action) => { 
+export default( state = { teams: [], hasErrors: false}, action) => { 
    switch (action.type) {
       case "FETCHING_TEAMS":
          return {
@@ -17,18 +17,21 @@ export default( state = { teams: []}, action) => {
             ...state
          }
 
-      case "TEAM_ADDED":
-         if (action.payload.errors){
+      case "TEAM_ADDED":{  
             return {
                ...state,
+               hasErrors: false,
+               teams: [...state.teams, action.payload]
+            }
+         }
+      case "ERROR_ADDING_TEAM":{
+            return {
+               ...state,
+               hasErrors: true,
                errors: action.payload.errors
             }
-         } else {  
-            return {
-               ...state,
-               teams: [...state.teams, action.payload]
-            }       
-      }  
+      }
+
       default:
          return state
    }

@@ -22,6 +22,10 @@ export const addTeam = (teamInfo) => {
       dispatch({type: "ADDING_TEAM"})
       fetch("/teams/", configObj)
       .then(resp => resp.json())
-      .then(data => dispatch({type: "TEAM_ADDED", payload: data}))
+      .then(data => {
+         data.id ?
+         dispatch({type: "TEAM_ADDED", payload: data}) :
+         dispatch({type: "ERROR_ADDING_TEAM", payload: data}) 
+      })
    }
 }
