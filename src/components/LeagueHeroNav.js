@@ -6,7 +6,7 @@ import { Nav, Form, Button, FormControl } from 'react-bootstrap'
 
 const LeagueHeroNav = () => {
    return (
-   <Navbar className="league-hero-nav" expand="sm">
+   <Navbar className="league-hero-nav" expand="sm" variant="dark">
       <Navbar.Brand>
          <NavLink to="/" exact >League Hero</NavLink>
       </Navbar.Brand>

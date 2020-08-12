@@ -72,6 +72,13 @@ html{
   font-size: 2em;
 }
 
+.active-league-name{
+  text-align: center;
+  padding-top: 55px;
+  height: 125px;
+  background: linear-gradient(to left bottom, #2c2f33, #323437, #39393b, #3e3e40, #444444);
+}
+
 /* 
 e63946 -> red
 f1faee -> offwhite

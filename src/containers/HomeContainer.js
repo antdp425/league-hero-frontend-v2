@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import ActiveLeagues from '../components/home/ActiveLeagues';
 
 
-function HomeContainer({leagues, leaguesLoading, teams, teamsLoading}) {
+function HomeContainer({leagues}) {
 
    return (
       <div>
          <br/>
-         <h4>Active Leagues</h4>
+         <h4>Active and Upcoming Leagues</h4>
          <br/>
          <ActiveLeagues leagues={leagues}/>
       </div>
