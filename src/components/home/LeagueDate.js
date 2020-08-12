@@ -13,7 +13,7 @@ function LeagueDate({league}) {
 
    return (
       <Card className="card">
-         <Card.Body>
+         <Card.Body className="league-date-body">
             <Card.Title className="month" >{month}</Card.Title>
             <Card.Text className="day">
                {day}

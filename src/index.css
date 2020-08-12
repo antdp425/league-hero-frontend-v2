@@ -54,7 +54,7 @@ html{
   border: none;
 }
 
-.card-body{
+.league-date-body{
   height: 125px;
   background: linear-gradient(to right bottom, #062b62, #00347a, #003d92, #0045ab, #004ec4);}
 
@@ -94,6 +94,24 @@ html{
 .league-card{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.league-show-card.card-body{
+  padding: 5px;
+  background-color: #2c2f33;
+  height: auto;
+}
+
+.league-show-card-title{
+  padding: 10px;
+  background-color: #2c2f33;
+  height: auto;
+}
+
+.league-show-card-text{
+  padding: 15px;
+  width: inherit;
+  background-color: #525252;
 }
 
 /* 

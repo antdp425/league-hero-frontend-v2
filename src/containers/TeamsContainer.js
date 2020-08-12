@@ -10,7 +10,6 @@ function TeamsContainer({match, leagues, teams}) {
    return (
      <div>
      <Switch>
-
         <Route exact path ={`${match.url}`}
                  render={(routerProps) => 
                   <TeamList {...routerProps} teams={teams} />
