@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer'
 import LeaguesContainer from './containers/LeaguesContainer'
 import TeamsContainer from './containers/TeamsContainer'
-import Navbar from './components/Navbar';
+import LeagueHeroNav from './components/LeagueHeroNav';
 import { connect } from 'react-redux';
 import { fetchLeagues } from './actions/leagues';
 import { fetchTeams } from './actions/teams';
+import { Container } from 'react-bootstrap';
 
 
 function App({fetchLeagues, fetchTeams}) {
@@ -19,10 +20,12 @@ function App({fetchLeagues, fetchTeams}) {
   return (
     <Router>
       <>
-        <Navbar />
-        <Route exact path="/" render={() => <HomeContainer />}/>
-        <Route path="/leagues" render={(routerProps) => <LeaguesContainer {...routerProps} />} />
-        <Route path="/teams" render={(routerProps) => <TeamsContainer {...routerProps} />} />
+        <LeagueHeroNav />
+          <Container>
+            <Route exact path="/" render={() => <HomeContainer />}/>
+            <Route path="/leagues" render={(routerProps) => <LeaguesContainer {...routerProps} />} />
+            <Route path="/teams" render={(routerProps) => <TeamsContainer {...routerProps} />} />
+          </Container>
       </>
     </Router>
   );

@@ -15,3 +15,45 @@ code {
 small{
   color: red
 }
+
+body a{
+  text-decoration: none;
+  color: white;
+}
+
+body a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.league-hero-nav{
+  background-color: #457b9d;
+}
+
+.league-hero-nav a{
+  text-decoration: none;
+  color: white;
+}
+
+.league-hero-nav a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+
+html{
+  background-color: #1d3557;
+}
+
+#root{
+  background-color: #1d3557;
+  color: white;
+}
+
+/* 
+e63946 -> red
+f1faee -> offwhite
+a8dadc -> light blue
+457b9d -> navblue
+1d3557 -> bodyblue
+*/
