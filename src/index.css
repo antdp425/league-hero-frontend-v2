@@ -27,7 +27,7 @@ body a:hover{
 }
 
 .league-hero-nav{
-  background-color: #457b9d;
+  background-color: #2c2f33;
 }
 
 .league-hero-nav a{
@@ -42,12 +42,34 @@ body a:hover{
 
 
 html{
-  background-color: #1d3557;
+  background-color: #23272a;
 }
 
 #root{
-  background-color: #1d3557;
+  background-color: #23272a;
   color: white;
+}
+
+.card.card{
+  border: none;
+}
+
+.card-body{
+  height: 125px;
+  background: linear-gradient(to right bottom, #062b62, #00347a, #003d92, #0045ab, #004ec4);}
+
+.active-league{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.month{
+  text-align: center;
+}
+
+.day{
+  text-align: center;
+  font-size: 2em;
 }
 
 /* 

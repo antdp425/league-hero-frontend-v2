@@ -1,13 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { Row, Col, Card } from 'react-bootstrap';
+import ActiveLeagues from '../components/home/ActiveLeagues';
+
 
 function HomeContainer({leagues, leaguesLoading, teams, teamsLoading}) {
 
    return (
       <div>
-         { teamsLoading ? "Loading..." : `${teams.length} Teams(s)`}
          <br/>
-         { leaguesLoading ? "Loading..." : `${leagues.length} Leagues(s)`}
+         <h4>Active Leagues</h4>
+         <br/>
+         <ActiveLeagues leagues={leagues}/>
       </div>
    )
 }
