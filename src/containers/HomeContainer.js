@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Row, Col, Card } from 'react-bootstrap';
 import ActiveLeagues from '../components/home/ActiveLeagues';
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer'
 import LeaguesContainer from './containers/LeaguesContainer'
