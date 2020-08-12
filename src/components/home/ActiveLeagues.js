@@ -16,7 +16,7 @@ function ActiveLeagues({leagues}) {
       <div>
          <Link to={`/leagues/${league.id}`}>
          <Row noGutters={true} className={"active-league"}>
-               <Col xs={6} sm={3} md={3} lg={3}>
+               <Col xs={4} sm={3} md={3} lg={3}>
                   <LeagueDate league={league}/>
                </Col>
                <Col className="active-league-name">

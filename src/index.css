@@ -73,10 +73,27 @@ html{
 }
 
 .active-league-name{
+  font-size: 1.5rem;
   text-align: center;
-  padding-top: 55px;
+  padding-top: 45px;
   height: 125px;
   background: linear-gradient(to left bottom, #2c2f33, #323437, #39393b, #3e3e40, #444444);
+}
+
+.league-card-body{
+  font-size: 1.5rem;
+  text-align: center;
+  height: 100%;
+  background: linear-gradient(to right top, #525252, #464646, #3a3a3a, #2e2e2e, #232323);
+}
+.league-card-footer{
+  height: auto;
+  background: linear-gradient(to right bottom, #5f5f5f, #474747, #313131, #1c1c1c, #000000);
+}
+
+.league-card{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* 
