@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, ButtonGroup, Button, Row, Col } from 'react-bootstrap'
+import { Card, ButtonGroup, Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 

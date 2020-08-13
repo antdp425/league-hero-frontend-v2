@@ -13,14 +13,14 @@ function ActiveLeagues({leagues}) {
    let sorted = filtered.sort((a,b) => { return new Date(a.start_date) - new Date(b.start_date)})
 
    const activeLeagues = sorted.map(league =>
-      <div>
+      <div key={league.id}>
          <Link to={`/leagues/${league.id}`}>
          <Row noGutters={true} className={"active-league"}>
                <Col xs={4} sm={3} md={3} lg={3}>
                   <LeagueDate league={league}/>
                </Col>
                <Col className="active-league-name">
-                  <>{league.name}</>
+                  {league.name}
                </Col>
          </Row>
        </Link>

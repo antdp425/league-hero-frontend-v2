@@ -149,7 +149,7 @@ label{
   font-size: 1.5rem;
   text-align: center;
   height: 100%;
-  background: linear-gradient(to right top, #b20000, #96050b, #790c10, #5d0f11, #411010);
+  background: linear-gradient(to right top, #525252, #464646, #3a3a3a, #2e2e2e, #232323);
 }
 
 .new-league-card-body{
@@ -159,7 +159,7 @@ label{
 
 .new-team-card-body{
   text-align: center;
-  background: linear-gradient(to left bottom, #000000, #2c2c2c, #545454, #7f7f7f, #aeaeae);
+  background: linear-gradient(to right top, #b20000, #96050b, #790c10, #5d0f11, #411010);
 }
 
 /* 

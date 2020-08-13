@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { NavLink } from "react-router-dom"
-import { Nav, Form, Button, FormControl } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 
 
 const LeagueHeroNav = () => {
