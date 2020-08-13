@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, ButtonGroup, Button } from 'react-bootstrap'
+import { Card, ButtonGroup, Button, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
 function LeagueShow({match, leagues}) {
@@ -29,12 +30,19 @@ function LeagueShow({match, leagues}) {
                   </Card.Text>
                </Card.Body>
                   <ButtonGroup>
-                     <Button className="mr-2" variant="success">
-                        Edit League
-                     </Button>
-                     <Button variant="danger">
+                     <Col>
+                     <Link to={`${match.url}/edit`}>
+                        <Button 
+                           block={true} className="mr-2" variant="success">
+                           Edit League
+                        </Button>
+                     </Link>
+                     </Col>
+                     <Col>
+                     <Button block={true} variant="danger">
                         Delete League
                      </Button>
+                     </Col>
                   </ButtonGroup>
             </Card>
             }

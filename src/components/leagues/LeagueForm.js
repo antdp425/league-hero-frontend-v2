@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import { addLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
 
-function LeagueForm({leagues, addLeague, errors, hasErrors}) {
+function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
 
    useEffect(() => {
       clearForm()
     },[leagues])
-
-
 
    const formats = ["3v3", "5v5", "7v7", "11v11"]
    const [leagueName, setLeagueName] = useState("")

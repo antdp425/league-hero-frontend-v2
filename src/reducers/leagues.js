@@ -14,7 +14,7 @@ export default ( state = { leagues: [], hasErrors: false, loading: false}, actio
 
       case "ADDING_LEAGUE":
          return {
-            ...state
+            ...state,
          }
 
       case "LEAGUE_ADDED":
