@@ -51,3 +51,24 @@ export const editLeague = (leagueInfo, leagueId) => {
       })
    }
 }
+
+export const deleteLeague = (leagueId) => {
+   let configObj = {
+      method: "DELETE",
+      headers: {
+         "Content-Type": "application/json",
+         "Accept": "application/json"
+         }
+      }
+
+   return (dispatch) => {
+      dispatch({type: "DELETING_LEAGUE"})
+      fetch(`/leagues/${leagueId}`, configObj)
+      .then(resp => resp.json())
+      .then(data => {
+         data.id ? 
+         dispatch({type: "LEAGUE_DELETED", payload: data}) : 
+         dispatch({type: "ERROR_DELETING_LEAGUE", payload: data})
+      })
+   }
+}
