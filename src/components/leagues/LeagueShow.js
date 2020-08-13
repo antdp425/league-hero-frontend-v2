@@ -24,7 +24,7 @@ function LeagueShow({history, match, leagues, deleteLeague, deleteErrors }) {
    const handleDelete = () => {
       handleClose()
       deleteLeague(match.params.leagueId)
-      !deleteErrors && history.push(`/leagues/`)
+      !deleteErrors && history.push(`/leagues`)
    }
 
    return (
