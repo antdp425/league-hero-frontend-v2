@@ -140,6 +140,18 @@ label{
   background-color: #3f3f3f;
 }
 
+.team-card{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.team-card-body{
+  font-size: 1.5rem;
+  text-align: center;
+  height: 100%;
+  background: linear-gradient(to right top, #b20000, #96050b, #790c10, #5d0f11, #411010);
+}
+
 /* 
 e63946 -> red
 f1faee -> offwhite
