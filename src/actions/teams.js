@@ -51,3 +51,23 @@ export const editTeam = (teamInfo, teamId) => {
       })
    }
 }
+
+export const deleteTeam = (teamId) => {
+   let configObj = {
+      method: "DELETE",
+      headers: {
+         "Content-Type": "application/json",
+         "Accept": "application/json"
+         }
+      }
+
+   return (dispatch) => {
+      dispatch({type: "DELETING_TEAM"})
+      fetch(`/teams/${teamId}`, configObj)
+      .then(data => {
+         data.ok ?
+         dispatch({type: "TEAM_DELETED", payload: teamId}) :
+         dispatch({type: "ERROR_DELETING_TEAM", payload: data})
+      })
+   }
+}

@@ -8,7 +8,7 @@ function HomeContainer({leagues}) {
    return (
       <div>
          <br/>
-         <h4>Active and Upcoming Leagues</h4>
+         <h4>Active Leagues</h4>
          <br/>
          <ActiveLeagues leagues={leagues}/>
       </div>

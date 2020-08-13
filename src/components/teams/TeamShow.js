@@ -1,11 +1,22 @@
-import React from 'react'
-import { Card, ButtonGroup, Button, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { deleteTeam } from '../../actions/teams'
 
 
-function TeamShow({match, teams}) {
+function TeamShow({match, teams, deleteTeam}) {
 
    const team = teams.find(team => team.id == match.params.teamId)
+
+   const [confirmShow, setConfirmShow] = useState(false)
+   const handleConfirm = () => setConfirmShow(true)
+   const handleClose = () => setConfirmShow(false)
+   const handleDelete = () => {
+      handleClose()
+      deleteTeam(match.params.teamId)
+   }
+
 
    return (
 
@@ -39,14 +50,30 @@ function TeamShow({match, teams}) {
                      </Link>
                      </Col>
                      <Col>
-                     <Button block={true} variant="danger">
+                     <Button onClick={() => handleConfirm()} block={true} variant="danger">
                         Delete League
                      </Button>
                      </Col>
                   </ButtonGroup>
-            </Card>}
+            </Card>
+            }
+
+         <Modal show={confirmShow}>
+            <Modal.Header>
+               <Modal.Title>Are you sure?</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+               <p>You are about to delete <b>{team && team.name}</b></p>
+            </Modal.Body>
+
+            <Modal.Footer>
+               <Button onClick={() => handleClose()}variant="secondary">Close</Button>
+               <Button onClick={() => handleDelete()}variant="danger">Delete</Button>
+            </Modal.Footer>
+         </Modal>
       </>
    )
 }
 
-export default TeamShow
+export default connect(null, {deleteTeam})(TeamShow)

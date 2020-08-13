@@ -37,7 +37,7 @@ function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
          <h3>New Team</h3>
          <br/>
          <form onSubmit={handleSubmit}>
-         <label for="team_name">Team Name: </label>
+         <label htmlFor="team_name">Team Name: </label>
             <input
                name="team_name"
                id="team_name" 

@@ -57,7 +57,7 @@ function LeagueShow({match, leagues, deleteLeague}) {
             </Card>
             }  
 
-         <Modal show={confirmShow} variant="dark">
+         <Modal show={confirmShow}>
             <Modal.Header>
                <Modal.Title>Are you sure?</Modal.Title>
             </Modal.Header>

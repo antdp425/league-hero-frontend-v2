@@ -51,6 +51,25 @@ export default( state = { teams: [], hasErrors: false}, action) => {
                hasErrors: true,
                errors: action.payload.errors
             }
+      case "DELETING_TEAM":
+         return {
+            ...state
+         }
+
+      case "TEAM_DELETED":
+            return {
+               ...state,
+               hasErrors: false,
+               teams: state.teams.filter(team => {
+                  return team.id != action.payload
+               })
+            }
+      case "ERROR_DELETING_TEAM":
+            return {
+               ...state,
+               hasErrors: true,
+               errors: action.payload.errors
+            }
       default:
          return state
    }
