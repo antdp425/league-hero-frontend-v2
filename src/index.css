@@ -122,6 +122,24 @@ label{
   padding-right: 10px;
 }
 
+.team-show-card.card-body{
+  padding: 5px;
+  background-color: #2c2f33;
+  height: auto;
+}
+
+.team-show-card-title{
+  padding: 10px;
+  background-color: #2c2f33;
+  height: auto;
+}
+
+.team-show-card-text{
+  padding: 15px;
+  width: inherit;
+  background-color: #3f3f3f;
+}
+
 /* 
 e63946 -> red
 f1faee -> offwhite
