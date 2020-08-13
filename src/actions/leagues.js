@@ -64,10 +64,9 @@ export const deleteLeague = (leagueId) => {
    return (dispatch) => {
       dispatch({type: "DELETING_LEAGUE"})
       fetch(`/leagues/${leagueId}`, configObj)
-      .then(resp => resp.json())
       .then(data => {
-         data.id ? 
-         dispatch({type: "LEAGUE_DELETED", payload: data}) : 
+         data.ok ?
+         dispatch({type: "LEAGUE_DELETED", payload: leagueId}) :
          dispatch({type: "ERROR_DELETING_LEAGUE", payload: data})
       })
    }

@@ -1,11 +1,17 @@
-import React from 'react'
-import { Card, ButtonGroup, Button, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { deleteLeague } from '../../actions/leagues'
+import { connect } from 'react-redux'
 
 
-function LeagueShow({match, leagues}) {
+function LeagueShow({match, leagues, deleteLeague}) {
 
    const league = leagues.find(league => league.id == match.params.leagueId)
+
+   const [confirmShow, setConfirmShow] = useState(false)
+   const handleConfirm = () => setConfirmShow(true)
+   const handleClose = () => setConfirmShow(false)
 
    let unformattedStart = league && league.start_date
    let start = new Date(unformattedStart)
@@ -15,6 +21,10 @@ function LeagueShow({match, leagues}) {
    let end = new Date(unformattedEnd)
    let formattedEnd = new Date(`${end.getFullYear()}-0${end.getMonth()+1}-${end.getUTCDate()+1}`)
 
+   const handleDelete = () => {
+      handleClose()
+      deleteLeague(match.params.leagueId)
+   }
 
    return (
       <>
@@ -39,15 +49,30 @@ function LeagueShow({match, leagues}) {
                      </Link>
                      </Col>
                      <Col>
-                     <Button block={true} variant="danger">
+                     <Button onClick={() => handleConfirm()} block={true} variant="danger">
                         Delete League
                      </Button>
                      </Col>
                   </ButtonGroup>
             </Card>
-            }
-      </>
+            }  
+
+         <Modal show={confirmShow} variant="dark">
+            <Modal.Header>
+               <Modal.Title>Are you sure?</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+               <p>You are about to delete <b>{league && league.name}</b></p>
+            </Modal.Body>
+
+            <Modal.Footer>
+               <Button onClick={() => handleClose()}variant="secondary">Close</Button>
+               <Button onClick={() => handleDelete()}variant="danger">Delete</Button>
+            </Modal.Footer>
+         </Modal>
+         </>
    )
 }
 
-export default LeagueShow
+export default connect(null, {deleteLeague})(LeagueShow)

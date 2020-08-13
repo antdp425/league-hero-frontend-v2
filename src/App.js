@@ -10,12 +10,12 @@ import { fetchTeams } from './actions/teams';
 import { Container } from 'react-bootstrap';
 
 
-function App({fetchLeagues, fetchTeams}) {
+function App({fetchLeagues, fetchTeams, leagues, teams}) {
 
   useEffect(()=>{
     fetchLeagues()
     fetchTeams()
-  },[])
+  },[leagues.length , teams.length])
 
   return (
     <Router>
@@ -31,5 +31,11 @@ function App({fetchLeagues, fetchTeams}) {
   );
 }
 
-// export default App
-export default connect(null, {fetchLeagues, fetchTeams})(App)
+const mapStateToProps = (state) => {
+  return {
+    leagues: state.leaguesReducer.leagues,
+    teams: state.teamsReducer.teams
+  }
+}
+
+export default connect(mapStateToProps, {fetchLeagues, fetchTeams})(App)
