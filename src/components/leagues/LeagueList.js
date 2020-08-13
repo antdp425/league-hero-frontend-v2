@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import LeagueCard from './LeagueCard'
+import NewLeagueButton from './NewLeagueButton'
 
 
-function LeagueList({leagues}) {
+function LeagueList({leagues, match}) {
 
    const list = leagues.map(league => 
       <div key={league.id}> 
@@ -23,7 +24,10 @@ function LeagueList({leagues}) {
         <br/>
          <h3>Leagues</h3>
         <br/>
-         {list}
+        <Link to={`${match.url}/new`}>
+         <NewLeagueButton />
+         </Link>
+            {list}
       </div>
    )
 }

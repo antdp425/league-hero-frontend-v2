@@ -152,6 +152,11 @@ label{
   background: linear-gradient(to right top, #b20000, #96050b, #790c10, #5d0f11, #411010);
 }
 
+.new-league-card-body{
+  text-align: center;
+  background: linear-gradient(to right bottom, #062b62, #00347a, #003d92, #0045ab, #004ec4);
+}
+
 /* 
 e63946 -> red
 f1faee -> offwhite
