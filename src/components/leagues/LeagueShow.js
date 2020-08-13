@@ -15,11 +15,11 @@ function LeagueShow({match, leagues, deleteLeague}) {
 
    let unformattedStart = league && league.start_date
    let start = new Date(unformattedStart)
-   let formattedStart = new Date(`${start.getFullYear()}-0${start.getMonth()+1}-${start.getUTCDate()+1}`)
+   let formattedStart = new Date(`${start.getFullYear()}/0${start.getMonth()+1}/${start.getDate()+1}`)
 
    let unformattedEnd = league && league.end_date
    let end = new Date(unformattedEnd)
-   let formattedEnd = new Date(`${end.getFullYear()}-0${end.getMonth()+1}-${end.getUTCDate()+1}`)
+   let formattedEnd = new Date(`${end.getFullYear()}/0${end.getMonth()+1}/${end.getDate()+1}`)
 
    const handleDelete = () => {
       handleClose()
