@@ -29,7 +29,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
 
    return (
       <div>
-         <hr/>
+         <br/>
          <h3>Edit Team: {team && team.name}</h3>
          <br/>
          <form onSubmit={handleSubmit}>

@@ -157,6 +157,11 @@ label{
   background: linear-gradient(to right bottom, #062b62, #00347a, #003d92, #0045ab, #004ec4);
 }
 
+.new-team-card-body{
+  text-align: center;
+  background: linear-gradient(to left bottom, #000000, #2c2c2c, #545454, #7f7f7f, #aeaeae);
+}
+
 /* 
 e63946 -> red
 f1faee -> offwhite

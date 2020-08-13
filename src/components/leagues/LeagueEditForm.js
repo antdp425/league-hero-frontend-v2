@@ -35,7 +35,7 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
       <div>
          <br/>
          <h3>Edit League: {league && league.name}</h3>
-         <hr/>
+         <br/>
          <form onSubmit={handleSubmit}>
          <label htmlFor="league_name">Name:</label>
             <input

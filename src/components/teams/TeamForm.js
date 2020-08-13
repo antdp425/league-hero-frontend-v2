@@ -33,7 +33,9 @@ function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
 
    return (
       <div>
-         <hr/>
+         <br/>
+         <h3>New Team</h3>
+         <br/>
          <form onSubmit={handleSubmit}>
          <label for="team_name">Team Name: </label>
             <input

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import TeamCard from './TeamCard'
+import NewTeamButton from './NewTeamButton'
 
 function TeamList({teams, match}) {
 
@@ -32,6 +33,9 @@ function TeamList({teams, match}) {
          <br/>
             <h3>Teams</h3>
         <br/>
+        <Link to={`${match.url}/new`}>
+          <NewTeamButton />
+         </Link>
          {list}
       </div>
    )

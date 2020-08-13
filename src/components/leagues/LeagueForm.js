@@ -34,7 +34,9 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
 
    return (
       <div>
-         <hr/>
+         <br/>
+         <h3>New League</h3>
+         <br/>
          <form onSubmit={handleSubmit}>
          <label for="league_name">Name: </label>
             <input
