@@ -9,7 +9,7 @@ import LeagueEditForm from '../components/leagues/LeagueEditForm';
 import TeamEditForm from '../components/teams/TeamEditForm';
 
 
-function LeaguesContainer({match, leagues, leaguesLoading}) {
+function LeaguesContainer({match, leagues}) {
 
    return (
       <div>
@@ -45,8 +45,7 @@ function LeaguesContainer({match, leagues, leaguesLoading}) {
 
 const mapStateToProps = (state) => {
    return {
-     leagues: state.leaguesReducer.leagues,
-     leaguesLoading: state.leaguesReducer.loading
+     leagues: state.leaguesReducer.leagues
    }
  }
  

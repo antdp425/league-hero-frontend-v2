@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
+import { Col } from 'react-bootstrap'
 
-function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
+function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) {
 
    useEffect(() => {
       clearForm()
@@ -37,6 +38,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
          <br/>
          <h3>New League</h3>
          <br/>
+         <Col>
          <form onSubmit={handleSubmit}>
          <label for="league_name">Name: </label>
             <input
@@ -45,7 +47,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
                value={leagueName}
                onChange={(e) => setLeagueName(e.target.value)}
                type="text"/> <br/>
-         { hasErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
+         { leagueErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
 
             {/* FIX ME <small>{errors && errors.league_name}</small> */}
          <label for="league_format">Format: </label>
@@ -58,7 +60,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
                   <option value="">Select a League Format</option>
                   {formats.map(format => <option>{format}</option>)}
             </select><br/>
-         { hasErrors && errors.league_format ? errors.league_format.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         { leagueErrors && errors.league_format ? errors.league_format.map(error => { return <><small>{error}</small><br/></>}) : ""}
 
             {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
          <label for="start_date">League Start: </label>
@@ -68,7 +70,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
                onChange={(e) => setLeagueStart(e.target.value)}
                value={leagueStart} 
                type="date"/><br/>
-         { hasErrors && errors.start_date ? errors.start_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         { leagueErrors && errors.start_date ? errors.start_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
 
             {/* FIX ME <small>{errors && errors.start_date}</small>  */}
          <label for="end_date">League End: </label>
@@ -78,11 +80,11 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
                onChange={(e) => setLeagueEnd(e.target.value)}
                value={leagueEnd} 
                type="date"/><br/>
-         { hasErrors && errors.end_date ? errors.end_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
-
-            {/* FIX ME <small>{errors && errors.end_date}</small> <br/> */}
+         { leagueErrors && errors.end_date ? errors.end_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         <br/>
             <input type="submit"/>
          </form>
+         </Col>
       </div>
    )
 }
@@ -91,7 +93,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, hasErrors}) {
 const mapStateToProps = (state) => {
    return {
       leagues: state.leaguesReducer.leagues,
-      hasErrors: !!state.leaguesReducer.hasErrors,
+      leagueErrors: !!state.leaguesReducer.leagueErrors,
       errors: state.leaguesReducer.errors
    }
 }

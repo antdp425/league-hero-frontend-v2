@@ -5,7 +5,7 @@ import { deleteLeague } from '../../actions/leagues'
 import { connect } from 'react-redux'
 
 
-function LeagueShow({match, leagues, deleteLeague}) {
+function LeagueShow({match, leagues, deleteLeague }) {
 
    const league = leagues.find(league => league.id == match.params.leagueId)
 
@@ -67,12 +67,12 @@ function LeagueShow({match, leagues, deleteLeague}) {
             </Modal.Body>
 
             <Modal.Footer>
-               <Button onClick={() => handleClose()}variant="secondary">Close</Button>
-               <Button onClick={() => handleDelete()}variant="danger">Delete</Button>
+               <Button onClick={() => handleClose()} variant="secondary">Close</Button>
+               <Button onClick={() => handleDelete()} variant="danger">Delete</Button>
             </Modal.Footer>
          </Modal>
          </>
    )
 }
 
-export default connect(null, {deleteLeague})(LeagueShow)
+export default connect(null, {deleteLeague, })(LeagueShow)

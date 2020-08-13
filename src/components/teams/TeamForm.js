@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addTeam } from '../../actions/teams'
 import { useEffect } from 'react'
+import { Col } from 'react-bootstrap'
 
 function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
 
@@ -36,6 +37,7 @@ function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
          <br/>
          <h3>New Team</h3>
          <br/>
+         <Col>
          <form onSubmit={handleSubmit}>
          <label htmlFor="team_name">Team Name: </label>
             <input
@@ -74,6 +76,7 @@ function TeamForm({teams, leagues, addTeam, errors, hasErrors}) {
          { hasErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
             <input type="submit"/>
          </form>
+         </Col>
       </div>
    )
 }

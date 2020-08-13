@@ -71,3 +71,9 @@ export const deleteLeague = (leagueId) => {
       })
    }
 }
+
+// export const clearFlags = () => {
+//    return (dispatch) => {
+//       (dispatch({type: "CLEAR_FLAGS"}))
+//    }
+// }

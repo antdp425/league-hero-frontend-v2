@@ -15,7 +15,7 @@ function App({fetchLeagues, fetchTeams, leagues, teams}) {
   useEffect(()=>{
     fetchLeagues()
     fetchTeams()
-  },[leagues.length , teams.length])
+  },[leagues.length, teams.length])
 
   return (
     <Router>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { editTeam } from '../../actions/teams'
 import { useEffect } from 'react'
+import { Col } from 'react-bootstrap'
 
 function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, hasErrors}) {
 
@@ -32,6 +33,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
          <br/>
          <h3>Edit Team: {team && team.name}</h3>
          <br/>
+         <Col>
          <form onSubmit={handleSubmit}>
          <label for="team_name">Team Name: </label>
             <input
@@ -67,8 +69,10 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
                value={teamPhone} 
                type="text"/><br/>
          { hasErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         <br/>
             <input type="submit"/>
          </form>
+         </Col>
       </div>
    )
 }

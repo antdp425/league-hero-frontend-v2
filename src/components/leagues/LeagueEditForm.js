@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { editLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
+import { Row, Col } from 'react-bootstrap'
 
-function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors, errors}) {
+function LeagueEditForm({history, match, leagues, league, editLeague, leagueEditErrors, errors}) {
 
    useEffect(() => {
       setLeagueName(league && league.name)
@@ -22,13 +23,15 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
 
    const handleSubmit = (e) => {
       e.preventDefault()
+      // clearFlags()
       editLeague({
          name: leagueName,
          league_format: leagueFormat,
          start_date: leagueStart,
          end_date: leagueEnd
-      }, 
-         match.params.leagueId)
+      }, match.params.leagueId)
+      
+      !leagueEditErrors && history.push(`/leagues/${match.params.leagueId}`)
    }
 
    return (
@@ -36,6 +39,7 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
          <br/>
          <h3>Edit League: {league && league.name}</h3>
          <br/>
+         <Col>
          <form onSubmit={handleSubmit}>
          <label htmlFor="league_name">Name:</label>
             <input
@@ -43,8 +47,8 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
                name="league_name" 
                onChange={(e) => setLeagueName(e.target.value)}
                value={leagueName}
-               type="text" /> <br/> 
-         { (hasErrors && errors.name) && errors.name.map(error => <><small>{error}</small> <br/></> )}
+               type="text" /> <br/>
+         { (leagueEditErrors && errors.name) && errors.name.map(error => <> <small>{error}</small> <br/></> )}
          <label htmlFor="league_format">Format: </label>
             <select
                required 
@@ -56,7 +60,7 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
                   <option value={league && league.league_format}>{league && league.league_format}</option>
                   {formats.map(format => <option key={format}>{format}</option>)}
             </select><br/>
-   { (hasErrors && errors.league_format) && errors.league_format.map(error => <><small>{error}</small><br/></>)}
+   { (leagueEditErrors && errors.league_format) && errors.league_format.map(error => <><small>{error}</small><br/></>)}
          <label htmlFor="start_date">League Start: </label>
             <input
                id="start_date" 
@@ -65,7 +69,7 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
                defaultValue={league && league.start_date}
                value={leagueStart} 
                type="date"/><br/>
-         { (hasErrors && errors.start_date ) && errors.start_date.map(error => <><small>{error}</small><br/></>) }
+         { (leagueEditErrors && errors.start_date ) && errors.start_date.map(error => <><small>{error}</small><br/></>) }
          <label htmlFor="end_date">League End: </label>
             <input 
                id="end_date"
@@ -74,9 +78,11 @@ function LeagueEditForm({history, match, leagues, league, editLeague, hasErrors,
                defaultValue={league && league.end_date}
                value={leagueEnd} 
                type="date"/><br/>
-         { (hasErrors && errors.end_date) && errors.end_date.map(error => <><small>{error}</small><br/></>)}
+         { (leagueEditErrors && errors.end_date) && errors.end_date.map(error => <><small>{error}</small><br/></>)}
+         <br/>
             <input type="submit"/>
          </form>
+         </Col>
       </div>
    )
 }
@@ -86,7 +92,7 @@ const mapStateToProps = (state, {match}) => {
    return {
       league: state.leaguesReducer.leagues.find(league => league.id == match.params.leagueId),
       leagues: state.leaguesReducer.leagues,
-      hasErrors: !!state.leaguesReducer.hasErrors,
+      leagueEditErrors: !!state.leaguesReducer.leagueEditErrors,
       errors: state.leaguesReducer.errors
    }
 }
