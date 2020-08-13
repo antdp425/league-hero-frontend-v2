@@ -1,4 +1,10 @@
-export default( state = { teams: [], hasErrors: false}, action) => { 
+export default( 
+   state = { teams: [], 
+      teamErrors: false, 
+      teamEditErrors: false,
+      deleteErrors: false}, 
+      action) => {
+
    switch (action.type) {
       case "FETCHING_TEAMS":
          return {
@@ -20,14 +26,14 @@ export default( state = { teams: [], hasErrors: false}, action) => {
       case "TEAM_ADDED":{  
             return {
                ...state,
-               hasErrors: false,
+               teamErrors: false,
                teams: [...state.teams, action.payload]
             }
          }
       case "ERROR_ADDING_TEAM":{
             return {
                ...state,
-               hasErrors: true,
+               teamErrors: true,
                errors: action.payload.errors
             }
       }
@@ -35,12 +41,13 @@ export default( state = { teams: [], hasErrors: false}, action) => {
       case "EDITING_TEAM":
          return {
             ...state,
+            teamEditErrors: true
          }
 
       case "TEAM_EDITED":
             return {
                ...state,
-               hasErrors: false,
+               teamEditErrors: false,
                teams: state.teams.map(team => {
                   return team.id == action.payload.id ? action.payload : team
                })
@@ -48,7 +55,7 @@ export default( state = { teams: [], hasErrors: false}, action) => {
       case "ERROR_EDITING_TEAM":
             return {
                ...state,
-               hasErrors: true,
+               teamEditErrors: true,
                errors: action.payload.errors
             }
       case "DELETING_TEAM":
@@ -59,7 +66,7 @@ export default( state = { teams: [], hasErrors: false}, action) => {
       case "TEAM_DELETED":
             return {
                ...state,
-               hasErrors: false,
+               deleteErrors: false,
                teams: state.teams.filter(team => {
                   return team.id != action.payload
                })
@@ -67,7 +74,7 @@ export default( state = { teams: [], hasErrors: false}, action) => {
       case "ERROR_DELETING_TEAM":
             return {
                ...state,
-               hasErrors: true,
+               deleteErrors: true,
                errors: action.payload.errors
             }
       default:

@@ -1,7 +1,8 @@
 export default ( 
    state = { leagues: [], 
                leagueErrors: false, 
-               leagueEditErrors: false, 
+               leagueEditErrors: false,
+               deleteErrors: false, 
                loading: false}, 
                action) => {
                   

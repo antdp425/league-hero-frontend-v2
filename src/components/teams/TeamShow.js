@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { deleteTeam } from '../../actions/teams'
 
 
-function TeamShow({match, teams, deleteTeam}) {
+function TeamShow({history, match, teams, deleteTeam, deleteErrors}) {
 
    const team = teams.find(team => team.id == match.params.teamId)
 
@@ -15,6 +15,7 @@ function TeamShow({match, teams, deleteTeam}) {
    const handleDelete = () => {
       handleClose()
       deleteTeam(match.params.teamId)
+      !deleteErrors && history.push(`/teams`)
    }
 
 
@@ -76,4 +77,10 @@ function TeamShow({match, teams, deleteTeam}) {
    )
 }
 
-export default connect(null, {deleteTeam})(TeamShow)
+const mapStateToProps = (state) => {
+   return {
+      deleteErrors: !!state.teamsReducer.deleteErrors
+   }
+}
+
+export default connect(mapStateToProps, {deleteTeam})(TeamShow)

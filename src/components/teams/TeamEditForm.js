@@ -4,7 +4,7 @@ import { editTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 import { Col } from 'react-bootstrap'
 
-function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, hasErrors}) {
+function TeamEditForm({history, match, teams, team, league, leagues, editTeam, errors, teamEditErrors}) {
 
    useEffect(() => {
       setTeamName(team && team.name)
@@ -26,6 +26,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
          phone: teamPhone,
          league_id: teamLeague
       }, match.params.teamId)
+      !teamEditErrors && history.push(`/teams/${match.params.teamId}`)
    }
 
    return (
@@ -42,7 +43,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
                value={teamName}
                onChange={(e) => setTeamName(e.target.value)}
                type="text"/> <br/>
-         { hasErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
+         { teamEditErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
          <label for="team_league">League: </label>
             <select
                required 
@@ -52,7 +53,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
                   <option value={league && league.id}>{league && league.name}</option>
                   {leagues.map(league => <option value={league.id}>{league.name}</option>)}
             </select><br/>
-      { hasErrors && errors.league_id ? errors.league_id.map(error => { return <><small>{error}</small><br/></>}) : ""}
+      { teamEditErrors && errors.league_id ? errors.league_id.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <label for="email">Contact Email: </label>
             <input
                id="email"
@@ -60,7 +61,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
                onChange={(e) => setTeamEmail(e.target.value)}
                value={teamEmail} 
                type="email"/><br/>
-         { hasErrors && errors.email ? errors.email.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         { teamEditErrors && errors.email ? errors.email.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <label for="phone">Contact Phone: </label>
             <input
                id="phone" 
@@ -68,7 +69,7 @@ function TeamEditForm({match, teams, team, league, leagues, editTeam, errors, ha
                onChange={(e) => setTeamPhone(e.target.value)}
                value={teamPhone} 
                type="text"/><br/>
-         { hasErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
+         { teamEditErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
          <br/>
             <input type="submit"/>
          </form>
@@ -83,7 +84,7 @@ const mapStateToProps = (state, {match}) => {
       leagues: state.leaguesReducer.leagues,
       team: state.teamsReducer.teams.find(team => team.id == match.params.teamId),
       teams: state.teamsReducer.teams,
-      hasErrors: !!state.teamsReducer.hasErrors,
+      teamEditErrors: !!state.teamsReducer.teamEditErrors,
       errors: state.teamsReducer.errors
    }
 }
