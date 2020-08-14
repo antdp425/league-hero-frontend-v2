@@ -30,7 +30,7 @@ export const addLeague = (leagueInfo) => {
    }
 }
 
-export const editLeague = (leagueInfo, leagueId) => {
+export const editLeague = (leagueInfo, leagueId, history) => {
    let configObj = {
       method: "PATCH",
       headers: {
@@ -45,9 +45,14 @@ export const editLeague = (leagueInfo, leagueId) => {
       fetch(`/leagues/${leagueId}`, configObj)
       .then(resp => resp.json())
       .then(data => {
-         data.id ? 
+         return data.id ? 
          dispatch({type: "LEAGUE_EDITED", payload: data}) : 
          dispatch({type: "ERROR_EDITING_LEAGUE", payload: data})
+      })
+      .then(data => {
+         return data.type === "ERROR_EDITING_LEAGUE" ? 
+         null : 
+         history.push(`/leagues/${leagueId}`) 
       })
    }
 }
@@ -72,8 +77,8 @@ export const deleteLeague = (leagueId) => {
    }
 }
 
-// export const clearFlags = () => {
-//    return (dispatch) => {
-//       (dispatch({type: "CLEAR_FLAGS"}))
-//    }
-// }
+export const clearFlags = () => {
+   return (dispatch) => {
+      dispatch({type: "CLEAR_FLAGS"})
+   }
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { editTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 import { Col } from 'react-bootstrap'
+import { clearFlags } from '../../actions/leagues'
 
 function TeamEditForm({history, match, teams, team, league, leagues, editTeam, errors, teamEditErrors}) {
 
@@ -26,7 +27,7 @@ function TeamEditForm({history, match, teams, team, league, leagues, editTeam, e
          phone: teamPhone,
          league_id: teamLeague
       }, match.params.teamId)
-      !teamEditErrors && history.push(`/teams/${match.params.teamId}`)
+      // !teamEditErrors && history.push(`/teams/${match.params.teamId}`)
    }
 
    return (
@@ -42,7 +43,7 @@ function TeamEditForm({history, match, teams, team, league, leagues, editTeam, e
                id="team_name" 
                value={teamName}
                onChange={(e) => setTeamName(e.target.value)}
-               type="text"/> <br/>
+               type="text" /> <br/>
          { teamEditErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
          <label for="team_league">League: </label>
             <select

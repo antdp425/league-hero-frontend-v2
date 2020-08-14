@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import {fetchLeagues} from '../actions/leagues'
+import {fetchLeagues, clearFlags} from '../actions/leagues'
 import { Route, Switch } from 'react-router-dom';
 import LeagueList from '../components/leagues/LeagueList'
 import LeagueShow from '../components/leagues/LeagueShow';
@@ -9,7 +9,7 @@ import LeagueEditForm from '../components/leagues/LeagueEditForm';
 import TeamEditForm from '../components/teams/TeamEditForm';
 
 
-function LeaguesContainer({match, leagues}) {
+function LeaguesContainer({match, leagues, clearFlags}) {
 
    return (
       <div>
@@ -24,7 +24,9 @@ function LeaguesContainer({match, leagues}) {
                   render={(routerProps) => 
                     <LeagueForm {...routerProps} />} 
                 />
-          <Route path={`${match.url}/:leagueId/edit`} 
+          <Route
+            onLeave={clearFlags} 
+            path={`${match.url}/:leagueId/edit`} 
                 render={(routerProps) => 
                   <LeagueEditForm {...routerProps} leagues={leagues}/>} 
                 />
@@ -49,4 +51,4 @@ const mapStateToProps = (state) => {
    }
  }
  
- export default connect(mapStateToProps,{fetchLeagues})(LeaguesContainer)
+ export default connect(mapStateToProps,{fetchLeagues, clearFlags})(LeaguesContainer)

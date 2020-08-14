@@ -41,7 +41,6 @@ export default(
       case "EDITING_TEAM":
          return {
             ...state,
-            teamEditErrors: true
          }
 
       case "TEAM_EDITED":

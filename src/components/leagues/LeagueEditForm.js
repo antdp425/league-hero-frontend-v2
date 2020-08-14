@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { editLeague } from '../../actions/leagues'
+import { editLeague, clearFlags} from '../../actions/leagues'
 import { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 
-function LeagueEditForm({history, match, leagues, league, editLeague, leagueEditErrors, errors}) {
+function LeagueEditForm({history, match, leagues, league, editLeague, leagueEditErrors, errors, clearFlags}) {
 
    useEffect(() => {
+      clearFlags()
       setLeagueName(league && league.name)
       setLeagueFormat(league && league.league_format)
       setLeagueStart(league && league.start_date)
       setLeagueEnd(league && league.end_date)
     },[league])
-
-   //  maybe try added has errors to state
 
    const formats = ["3v3", "5v5", "7v7", "11v11"]
    const [leagueName, setLeagueName] = useState("")
@@ -23,15 +22,15 @@ function LeagueEditForm({history, match, leagues, league, editLeague, leagueEdit
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      // clearFlags()
       editLeague({
          name: leagueName,
          league_format: leagueFormat,
          start_date: leagueStart,
          end_date: leagueEnd
-      }, match.params.leagueId)
-      
-      !leagueEditErrors && history.push(`/leagues/${match.params.leagueId}`)
+      }, 
+         match.params.leagueId,
+         history
+      )      
    }
 
    return (
@@ -49,6 +48,11 @@ function LeagueEditForm({history, match, leagues, league, editLeague, leagueEdit
                value={leagueName}
                type="text" /> <br/>
          { (leagueEditErrors && errors.name) && errors.name.map(error => <> <small>{error}</small> <br/></> )}
+
+         {/* { leagueEditErrors && errors.name ? 
+            errors.name.map(error => <> <small>{error}</small> <br/></> ) : 
+            null
+         } */}
          <label htmlFor="league_format">Format: </label>
             <select
                required 
@@ -77,8 +81,13 @@ function LeagueEditForm({history, match, leagues, league, editLeague, leagueEdit
                onChange={(e) => setLeagueEnd(e.target.value)}
                defaultValue={league && league.end_date}
                value={leagueEnd} 
-               type="date"/><br/>
-         { (leagueEditErrors && errors.end_date) && errors.end_date.map(error => <><small>{error}</small><br/></>)}
+               type="date"/> <br/>
+         
+         {  
+            (leagueEditErrors && errors.end_date) && 
+            errors.end_date.map(error => <><small>{error}</small><br/></>)
+         }
+
          <br/>
             <input type="submit"/>
          </form>
@@ -97,4 +106,4 @@ const mapStateToProps = (state, {match}) => {
    }
 }
 
-export default connect(mapStateToProps,{editLeague})(LeagueEditForm)
+export default connect(mapStateToProps,{editLeague, clearFlags})(LeagueEditForm)

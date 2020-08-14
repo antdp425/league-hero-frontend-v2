@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { deleteLeague} from '../../actions/leagues'
+import { deleteLeague, clearFlags} from '../../actions/leagues'
 import { connect } from 'react-redux'
 
 
-function LeagueShow({history, match, leagues, deleteLeague, deleteErrors }) {
+function LeagueShow({history, match, leagues, deleteLeague, deleteErrors, clearFlags}) {
 
    const league = leagues.find(league => league.id == match.params.leagueId)
 
@@ -83,4 +83,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {deleteLeague, })(LeagueShow)
+export default connect(mapStateToProps, {deleteLeague, clearFlags})(LeagueShow)

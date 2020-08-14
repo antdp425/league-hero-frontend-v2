@@ -40,7 +40,6 @@ export default (
       case "EDITING_LEAGUE":
          return {
             ...state,
-            leagueEditErrors: true
          }
 
       case "LEAGUE_EDITED":
@@ -76,13 +75,14 @@ export default (
                deleteErrors: true,
                errors: action.payload.errors
             }
-      // case "CLEAR_FLAGS":
-      //    return {
-      //       leagueErrors: false, 
-      //       loading: false, 
-      //       leagueEditErrors: false,
-      //       ...state
-      //    }
+
+      case "CLEAR_FLAGS":
+         return {
+            ...state,
+            leagueEditErrors: false,
+            leagueErrors: false, 
+            loading: false, 
+         }
       default:
          return state
    }
