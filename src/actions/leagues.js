@@ -7,7 +7,7 @@ export const fetchLeagues = () => {
    }
 }
 
-export const addLeague = (leagueInfo) => {
+export const addLeague = (leagueInfo, history) => {
 
    let configObj = {
       method: "POST",
@@ -23,9 +23,15 @@ export const addLeague = (leagueInfo) => {
       fetch("/leagues", configObj)
       .then(resp => resp.json())
       .then(data => {
-         data.id ?
+         return data.id ?
          dispatch({type: "LEAGUE_ADDED", payload: data}) :
          dispatch({type: "ERROR_ADDING_LEAGUE", payload: data})
+      })
+      .then(data => {
+         console.log(data)
+         return data.type === "ERROR_ADDING_LEAGUE" ? 
+         null : 
+         history.push(`/leagues`) 
       })
    }
 }

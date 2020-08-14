@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import { clearFlags } from '../../actions/leagues'
+import { connect } from 'react-redux'
 
-function NewLeagueButton() {
+function NewLeagueButton({clearFlags}) {
    return (
-      <Card className="new-league-card">
+      <Card onClick={clearFlags}className="new-league-card">
          <Card.Body className="new-league-card-body">
             <Card.Title>Create New League</Card.Title>
          </Card.Body>
@@ -11,4 +13,4 @@ function NewLeagueButton() {
    )
 }
 
-export default NewLeagueButton
+export default connect(null, {clearFlags})(NewLeagueButton)

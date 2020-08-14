@@ -30,8 +30,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
          league_format: leagueFormat,
          start_date: leagueStart,
          end_date: leagueEnd
-      })
-      !leagueErrors && history.push(`/leagues`)
+      }, history)
    }
 
    return (
