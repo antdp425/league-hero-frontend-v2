@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { editTeam } from '../../actions/teams'
 import { useEffect } from 'react'
 import { Col } from 'react-bootstrap'
-import { clearFlags } from '../../actions/leagues'
 
 function TeamEditForm({history, match, teams, team, league, leagues, editTeam, errors, teamEditErrors}) {
 
@@ -26,8 +25,9 @@ function TeamEditForm({history, match, teams, team, league, leagues, editTeam, e
          email: teamEmail,
          phone: teamPhone,
          league_id: teamLeague
-      }, match.params.teamId)
-      // !teamEditErrors && history.push(`/teams/${match.params.teamId}`)
+      }, 
+      match.params.teamId,
+      history)
    }
 
    return (

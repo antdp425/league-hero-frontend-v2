@@ -29,8 +29,8 @@ function TeamForm({history, teams, leagues, addTeam, errors, teamErrors}) {
          email: teamEmail,
          phone: teamPhone,
          league_id: teamLeague
-      })
-      !teamErrors && history.push(`/teams`)
+      }, history)
+      // !teamErrors && history.push(`/teams`)
    }
 
    return (

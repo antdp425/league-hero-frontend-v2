@@ -76,6 +76,13 @@ export default(
                deleteErrors: true,
                errors: action.payload.errors
             }
+      case "CLEAR_FLAGS":
+         return {
+            ...state,
+            teamEditErrors: false,
+            teamErrors: false, 
+            loading: false, 
+         }
       default:
          return state
    }

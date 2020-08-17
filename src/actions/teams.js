@@ -7,7 +7,7 @@ export const fetchTeams = () => {
    }
 }
 
-export const addTeam = (teamInfo) => {
+export const addTeam = (teamInfo, history) => {
 
    let configObj = {
       method: "POST",
@@ -23,14 +23,20 @@ export const addTeam = (teamInfo) => {
       fetch("/teams/", configObj)
       .then(resp => resp.json())
       .then(data => {
-         data.id ?
+         return data.id ?
          dispatch({type: "TEAM_ADDED", payload: data}) :
          dispatch({type: "ERROR_ADDING_TEAM", payload: data}) 
+      })      
+      .then(data => {
+         console.log(data)
+         return data.type === "ERROR_ADDING_TEAM" ? 
+         null : 
+         history.push(`/teams`) 
       })
    }
 }
 
-export const editTeam = (teamInfo, teamId) => {
+export const editTeam = (teamInfo, teamId, history) => {
    let configObj = {
       method: "PATCH",
       headers: {
@@ -45,9 +51,14 @@ export const editTeam = (teamInfo, teamId) => {
       fetch(`/teams/${teamId}`, configObj)
       .then(resp => resp.json())
       .then(data => {
-         data.id ? 
+         return data.id ? 
          dispatch({type: "TEAM_EDITED", payload: data}) : 
          dispatch({type: "ERROR_EDITING_TEAM", payload: data})
+      })
+      .then(data => {
+         return data.type === "ERROR_EDITING_TEAM" ? 
+         null : 
+         history.push(`/teams/${teamId}`) 
       })
    }
 }
@@ -69,5 +80,11 @@ export const deleteTeam = (teamId) => {
          dispatch({type: "TEAM_DELETED", payload: teamId}) :
          dispatch({type: "ERROR_DELETING_TEAM", payload: data})
       })
+   }
+}
+
+export const clearFlags = () => {
+   return (dispatch) => {
+      dispatch({type: "CLEAR_FLAGS"})
    }
 }

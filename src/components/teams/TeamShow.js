@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteTeam } from '../../actions/teams'
+import { deleteTeam, clearFlags } from '../../actions/teams'
 
 
-function TeamShow({history, match, teams, deleteTeam, deleteErrors}) {
+function TeamShow({history, match, teams, deleteTeam, deleteErrors, clearFlags}) {
 
    const team = teams.find(team => team.id == match.params.teamId)
 
@@ -25,14 +25,6 @@ function TeamShow({history, match, teams, deleteTeam, deleteErrors}) {
          <hr/>
          { team && 
          <Card>
-               {/* {team.name}
-               <br/>
-               {team.team.name}
-               <br/>
-               {team.phone}
-               <br/>
-               {team.email} */}
-
                <Card.Body className="team-show-card">
                   <Card.Title className="team-show-card-title">{team.name}</Card.Title>
                   <Card.Text className="team-show-card-text">
@@ -43,7 +35,7 @@ function TeamShow({history, match, teams, deleteTeam, deleteErrors}) {
                </Card.Body>
                   <ButtonGroup>
                      <Col>
-                     <Link to={`/leagues/${team.league.id}${match.url}/edit`}>
+                     <Link onClick={clearFlags} to={`/leagues/${team.league.id}${match.url}/edit`}>
                         <Button 
                            block={true} className="mr-2" variant="success">
                            Edit Team
@@ -83,4 +75,4 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps, {deleteTeam})(TeamShow)
+export default connect(mapStateToProps, {deleteTeam, clearFlags})(TeamShow)
