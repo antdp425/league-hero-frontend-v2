@@ -28,7 +28,6 @@ export const addLeague = (leagueInfo, history) => {
          dispatch({type: "ERROR_ADDING_LEAGUE", payload: data})
       })
       .then(data => {
-         console.log(data)
          return data.type === "ERROR_ADDING_LEAGUE" ? 
          null : 
          history.push(`/leagues`) 

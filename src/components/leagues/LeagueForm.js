@@ -34,23 +34,27 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
    }
 
    return (
-      <div>
+      <>
          <br/>
          <h3>New League</h3>
          <br/>
          <Col>
          <form onSubmit={handleSubmit}>
-         <label for="league_name">Name: </label>
+         <label htmlFor="league_name">Name: </label>
             <input
                id="league_name"
                name="league_name" 
                value={leagueName}
                onChange={(e) => setLeagueName(e.target.value)}
-               type="text"/> <br/>
-         { leagueErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
+               type="text"/> 
+               <br/>
 
-            {/* FIX ME <small>{errors && errors.league_name}</small> */}
-         <label for="league_format">Format: </label>
+         { 
+            (leagueErrors && errors.name) && 
+            errors.name.map(error => <> <small>{error}</small> <br/></> )
+         }
+
+         <label htmlFor="league_format">Format: </label>
             <select
                required 
                value={leagueFormat}
@@ -58,34 +62,48 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
                id="league_format" 
                name="league_format">
                   <option value="">Select a League Format</option>
-                  {formats.map(format => <option>{format}</option>)}
-            </select><br/>
-         { leagueErrors && errors.league_format ? errors.league_format.map(error => { return <><small>{error}</small><br/></>}) : ""}
+                  {formats.map(format => <option key={format}>{format}</option>)}
+            </select>
+            <br/>
 
-            {/* FIX ME <small>{errors && errors.league_format}</small> <br/> */}
-         <label for="start_date">League Start: </label>
+         { 
+            (leagueErrors && errors.league_format) && 
+            errors.league_format.map(error => <><small>{error}</small><br/></>)
+         }
+
+         <label htmlFor="start_date">League Start: </label>
             <input
                id="start_date" 
                name="start_date"
                onChange={(e) => setLeagueStart(e.target.value)}
                value={leagueStart} 
-               type="date"/><br/>
-         { leagueErrors && errors.start_date ? errors.start_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
+               type="date"/>
+               <br/>
 
-            {/* FIX ME <small>{errors && errors.start_date}</small>  */}
-         <label for="end_date">League End: </label>
+         { 
+            (leagueErrors && errors.start_date ) && 
+            errors.start_date.map(error => <><small>{error}</small><br/></>) 
+         }
+
+         <label htmlFor="end_date">League End: </label>
             <input 
                id="end_date"
                name="end_date"
                onChange={(e) => setLeagueEnd(e.target.value)}
                value={leagueEnd} 
-               type="date"/><br/>
-         { leagueErrors && errors.end_date ? errors.end_date.map(error => { return <><small>{error}</small><br/></>}) : ""}
+               type="date"/>
+               <br/>
+
+         {  
+            (leagueErrors && errors.end_date) && 
+            errors.end_date.map(error => <><small>{error}</small><br/></>)
+         }
+
          <br/>
             <input type="submit"/>
          </form>
          </Col>
-      </div>
+      </>
    )
 }
 
