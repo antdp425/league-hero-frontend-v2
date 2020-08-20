@@ -1,22 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {fetchLeagues, clearFlags} from '../actions/leagues'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import LeagueList from '../components/leagues/LeagueList'
 import LeagueShow from '../components/leagues/LeagueShow';
 import LeagueForm from '../components/leagues/LeagueForm';
 import LeagueEditForm from '../components/leagues/LeagueEditForm';
 import TeamEditForm from '../components/teams/TeamEditForm';
-
+import NewLeagueButton from '../components/leagues/NewLeagueButton';
 
 function LeaguesContainer({match, leagues, clearFlags}) {
 
    return (
-      <div>
+      <div>        
         <Switch>
           <Route exact path ={`${match.url}`}
-                 render={(routerProps) => 
-                  <LeagueList {...routerProps} leagues={leagues} />
+                 render={(routerProps) =>
+                  <>
+                    <br/> 
+                    <h3>Leagues</h3>
+                    <br/> 
+                    <Link to={`/leagues/new`}>
+                      <NewLeagueButton />
+                    </Link>
+                    <LeagueList {...routerProps} leagues={leagues} />
+                  </>
                  }>
           </Route>
 

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { NavLink } from "react-router-dom"
-import { Nav } from 'react-bootstrap'
+import { Nav, Form, Button, FormControl } from 'react-bootstrap'
 
+const LeagueHeroNav = ({setSearchTerm}) => {
 
-const LeagueHeroNav = () => {
    return (
    <Navbar className="league-hero-nav" expand="sm" variant="dark">
       <Navbar.Brand>
@@ -20,10 +20,10 @@ const LeagueHeroNav = () => {
                <NavLink to="/teams" exact >Teams</NavLink>
             </Nav.Link>
          </Nav>
-      {/* <Form inline>
-         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-         <Button variant="outline-success">Search</Button>
-      </Form> */}
+      <Form inline>
+         <FormControl onChange={(e) => setSearchTerm(e.target.value)} type="text" name="query" placeholder="Search" className="mr-sm-2" />
+         <NavLink to="/results" exact> <Button variant="outline-success">Search</Button> </NavLink>
+      </Form>
       </Navbar.Collapse>
    </Navbar>
    )
