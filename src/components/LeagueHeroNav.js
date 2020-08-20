@@ -1,15 +1,27 @@
 import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 import { Nav, Form, Button, FormControl } from 'react-bootstrap'
 
-const LeagueHeroNav = ({setSearchTerm}) => {
+const LeagueHeroNav = () => {
+
+   const [searchTerm, setSearchTerm] = useState("")
+   let history = useHistory()
+
+   const handleSubmit = (e) => {
+      e.preventDefault()
+      history.push(`/results/${searchTerm}`)
+   }
 
    return (
-   <Navbar className="league-hero-nav" expand="sm" variant="dark">
+   <Navbar className="league-hero-nav" 
+           expand="sm" 
+           variant="dark">
+
       <Navbar.Brand>
          <NavLink to="/" exact >League Hero</NavLink>
       </Navbar.Brand>
+
       <Navbar.Toggle aria-controls="lh-nav"/>
       <Navbar.Collapse id="lh-nav">
          <Nav className="mr-auto">
@@ -20,9 +32,13 @@ const LeagueHeroNav = ({setSearchTerm}) => {
                <NavLink to="/teams" exact >Teams</NavLink>
             </Nav.Link>
          </Nav>
-      <Form inline>
-         <FormControl onChange={(e) => setSearchTerm(e.target.value)} type="text" name="query" placeholder="Search" className="mr-sm-2" />
-         <NavLink to="/results" exact> <Button variant="outline-success">Search</Button> </NavLink>
+      <Form inline onSubmit={handleSubmit}>
+         <FormControl onChange={(e) => setSearchTerm(e.target.value)} 
+                      type="text" 
+                      name="query" 
+                      placeholder="Search" 
+                      className="mr-sm-2" />
+         <Button type="submit" variant="outline-success">Search</Button>
       </Form>
       </Navbar.Collapse>
    </Navbar>

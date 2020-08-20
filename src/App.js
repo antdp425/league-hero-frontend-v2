@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer'
 import LeaguesContainer from './containers/LeaguesContainer'
@@ -13,8 +13,6 @@ import { Container } from 'react-bootstrap';
 
 function App({fetchLeagues, fetchTeams, leagues, teams}) {
 
-  const [searchTerm, setSearchTerm] = useState("")
-
   useEffect(() => {
     fetchLeagues()
     fetchTeams()
@@ -23,16 +21,16 @@ function App({fetchLeagues, fetchTeams, leagues, teams}) {
   return (
     <Router>
       <>
-        <LeagueHeroNav setSearchTerm={setSearchTerm}/>
+        <LeagueHeroNav />
           <Container>
             <Route exact path="/" 
-                   render={() => <HomeContainer />}/>
+                   render={(routerProps) => <HomeContainer {...routerProps} />} />
             <Route path="/leagues" 
                    render={(routerProps) => <LeaguesContainer {...routerProps} />} />
             <Route path="/teams" 
                    render={(routerProps) => <TeamsContainer {...routerProps} />} />
-            <Route path="/results" 
-                   render={(routerProps) => <ResultsContainer {...routerProps} query={searchTerm}/>} />
+            <Route path="/results/:query" 
+                   render={(routerProps) => <ResultsContainer {...routerProps} />} />
           </Container>
       </>
     </Router>
