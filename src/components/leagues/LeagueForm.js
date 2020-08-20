@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addLeague } from '../../actions/leagues'
 import { useEffect } from 'react'
-import { Col } from 'react-bootstrap'
+import { Col, Button } from 'react-bootstrap'
 
 function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) {
 
@@ -100,7 +100,7 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
          }
 
          <br/>
-            <input type="submit"/>
+         <Button type="submit" variant="success">Submit</Button>
          </form>
          </Col>
       </>

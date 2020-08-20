@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { editTeam } from '../../actions/teams'
 import { useEffect } from 'react'
-import { Col } from 'react-bootstrap'
+import { Col, Button } from 'react-bootstrap'
 
-function TeamEditForm({history, match, teams, team, league, leagues, editTeam, errors, teamEditErrors}) {
+
+function TeamEditForm({history, match, team, league, leagues, editTeam, errors, teamEditErrors}) {
 
    useEffect(() => {
       setTeamName(team && team.name)
@@ -43,8 +44,14 @@ function TeamEditForm({history, match, teams, team, league, leagues, editTeam, e
                id="team_name" 
                value={teamName}
                onChange={(e) => setTeamName(e.target.value)}
-               type="text" /> <br/>
-         { teamEditErrors && errors.name ? errors.name.map(error => { return <><small>{error}</small> <br/></>  }) : ""}
+               type="text" /> 
+               <br/>
+
+         {
+            (teamEditErrors && errors.name) &&
+            errors.name.map(error => <><small>{error}</small><br/></>)
+         }
+
          <label for="team_league">League: </label>
             <select
                required 
@@ -53,26 +60,44 @@ function TeamEditForm({history, match, teams, team, league, leagues, editTeam, e
                name="team_league">
                   <option value={league && league.id}>{league && league.name}</option>
                   {leagues.map(league => <option value={league.id}>{league.name}</option>)}
-            </select><br/>
-      { teamEditErrors && errors.league_id ? errors.league_id.map(error => { return <><small>{error}</small><br/></>}) : ""}
+            </select>
+            <br/>
+
+         {
+            (teamEditErrors && errors.league_id) &&
+            errors.league_id.map(error => <><small>{error}</small><br/></>)
+         }
+         
          <label for="email">Contact Email: </label>
             <input
                id="email"
                name="email"
                onChange={(e) => setTeamEmail(e.target.value)}
                value={teamEmail} 
-               type="email"/><br/>
-         { teamEditErrors && errors.email ? errors.email.map(error => { return <><small>{error}</small><br/></>}) : ""}
+               type="email"/>
+               <br/>
+         
+         {
+            (teamEditErrors && errors.email) &&
+            errors.email.map(error => <><small>{error}</small><br/></>)
+         }
+         
          <label for="phone">Contact Phone: </label>
             <input
                id="phone" 
                name="phone"
                onChange={(e) => setTeamPhone(e.target.value)}
                value={teamPhone} 
-               type="text"/><br/>
-         { teamEditErrors && errors.phone ? errors.phone.map(error => { return <><small>{error}</small><br/></>}) : ""}
+               type="text"/>
+               <br/>
+
+         {
+            (teamEditErrors && errors.phone) &&
+            errors.phone.map(error => <><small>{error}</small><br/></>)
+         }         
+         
          <br/>
-            <input type="submit"/>
+         <Button type="submit" variant="success">Submit</Button>
          </form>
          </Col>
       </div>
