@@ -12,7 +12,7 @@ import NewLeagueButton from '../components/leagues/NewLeagueButton';
 function LeaguesContainer({match, leagues, clearFlags}) {
 
    return (
-      <div>        
+      <>        
         <Switch>
           <Route exact path ={`${match.url}`}
                  render={(routerProps) =>
@@ -32,10 +32,8 @@ function LeaguesContainer({match, leagues, clearFlags}) {
                   render={(routerProps) => 
                     <LeagueForm {...routerProps} />} 
                 />
-          <Route
-            onLeave={clearFlags} 
-            path={`${match.url}/:leagueId/edit`} 
-                render={(routerProps) => 
+          <Route path={`${match.url}/:leagueId/edit`} 
+                 render={(routerProps) => 
                   <LeagueEditForm {...routerProps} leagues={leagues}/>} 
                 />
 
@@ -49,7 +47,7 @@ function LeaguesContainer({match, leagues, clearFlags}) {
                     <LeagueShow {...routerProps} leagues={leagues} />} 
                   />
         </Switch>
-      </div>
+      </>
    )
 }
 

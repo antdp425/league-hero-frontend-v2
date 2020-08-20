@@ -10,7 +10,7 @@ const LeagueHeroNav = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      searchTerm != "" && history.push(`/results/${searchTerm}`)
+      history.push(`/results/${searchTerm}`)
       setSearchTerm("")
    }
 
@@ -42,7 +42,9 @@ const LeagueHeroNav = () => {
                         name="query" 
                         placeholder="Search" 
                         className="mr-sm-2" />
-            <Button type="submit" variant="outline-success">Search</Button>
+            <Button disabled={searchTerm === ""} 
+                    type="submit" 
+                    variant="outline-success">Search</Button>
          </Form>
          </Navbar.Collapse>
       </Navbar>

@@ -10,7 +10,7 @@ import NewTeamButton from '../components/teams/NewTeamButton';
 function TeamsContainer({match, leagues, teams}) {
 
    return (
-     <div>
+     <>
      <Switch>
         <Route exact path ={`${match.url}`}
                  render={(routerProps) =>
@@ -36,7 +36,7 @@ function TeamsContainer({match, leagues, teams}) {
                 <TeamShow {...routerProps} teams={teams}/>} 
               />
       </Switch>
-      </div>
+      </>
    )
 }
 

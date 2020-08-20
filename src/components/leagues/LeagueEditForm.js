@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { editLeague, clearFlags} from '../../actions/leagues'
 import { useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 
 function LeagueEditForm({history, match, leagues, league, editLeague, leagueEditErrors, errors, clearFlags}) {
 

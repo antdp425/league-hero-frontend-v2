@@ -6,12 +6,12 @@ import ActiveLeagues from '../components/home/ActiveLeagues';
 function HomeContainer({leagues}) {
 
    return (
-      <div>
+      <>
          <br/>
          <h4>Active Leagues</h4>
          <br/>
          <ActiveLeagues leagues={leagues}/>
-      </div>
+      </>
    )
 }
 
