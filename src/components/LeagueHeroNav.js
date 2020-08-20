@@ -18,7 +18,8 @@ const LeagueHeroNav = () => {
 
       <Navbar className="league-hero-nav" 
             expand="sm" 
-            variant="dark">
+            variant="dark"
+            sticky="top">
 
          <Navbar.Brand>
             <NavLink to="/" exact >League Hero</NavLink>
