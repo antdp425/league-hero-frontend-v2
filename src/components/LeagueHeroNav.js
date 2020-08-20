@@ -10,38 +10,42 @@ const LeagueHeroNav = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      history.push(`/results/${searchTerm}`)
+      searchTerm != "" && history.push(`/results/${searchTerm}`)
+      setSearchTerm("")
    }
 
    return (
-   <Navbar className="league-hero-nav" 
-           expand="sm" 
-           variant="dark">
 
-      <Navbar.Brand>
-         <NavLink to="/" exact >League Hero</NavLink>
-      </Navbar.Brand>
+      <Navbar className="league-hero-nav" 
+            expand="sm" 
+            variant="dark">
 
-      <Navbar.Toggle aria-controls="lh-nav"/>
-      <Navbar.Collapse id="lh-nav">
-         <Nav className="mr-auto">
-            <Nav.Link>
-               <NavLink to="/leagues" exact >Leagues</NavLink>
-            </Nav.Link>
-            <Nav.Link>
-               <NavLink to="/teams" exact >Teams</NavLink>
-            </Nav.Link>
-         </Nav>
-      <Form inline onSubmit={handleSubmit}>
-         <FormControl onChange={(e) => setSearchTerm(e.target.value)} 
-                      type="text" 
-                      name="query" 
-                      placeholder="Search" 
-                      className="mr-sm-2" />
-         <Button type="submit" variant="outline-success">Search</Button>
-      </Form>
-      </Navbar.Collapse>
-   </Navbar>
+         <Navbar.Brand>
+            <NavLink to="/" exact >League Hero</NavLink>
+         </Navbar.Brand>
+
+         <Navbar.Toggle aria-controls="lh-nav"/>
+         <Navbar.Collapse id="lh-nav">
+            <Nav className="mr-auto">
+               <Nav.Link>
+                  <NavLink to="/leagues" exact >Leagues</NavLink>
+               </Nav.Link>
+               <Nav.Link>
+                  <NavLink to="/teams" exact >Teams</NavLink>
+               </Nav.Link>
+            </Nav>
+         <Form inline onSubmit={handleSubmit}>
+            <FormControl onChange={(e) => setSearchTerm(e.target.value)} 
+                        value={searchTerm}
+                        type="text" 
+                        name="query" 
+                        placeholder="Search" 
+                        className="mr-sm-2" />
+            <Button type="submit" variant="outline-success">Search</Button>
+         </Form>
+         </Navbar.Collapse>
+      </Navbar>
+      
    )
 }
 

@@ -1,30 +1,41 @@
 import React from 'react' 
 import { connect } from 'react-redux'
 import LeagueList from '../components/leagues/LeagueList'
+import TeamList from '../components/teams/TeamList'
 import { Row, Col } from 'react-bootstrap'
 
-function ResultsContainer({query, teamResults, leagueResults}) {
+function ResultsContainer({teamResults, leagueResults}) {
 
    return (
       <>
       <br/>
       <Row>
          <Col>
+            <br/>
             {
-               leagueResults && leagueResults.length > 0 &&
+               leagueResults && leagueResults.length > 0 ?
                   <>
-                     <br/>
                      <h3>League Results</h3>
                      <br/> 
                      <LeagueList leagues={leagueResults} />
+                  </> : 
+                  <>
+                     <h3>No League Results</h3>                  
                   </>
             }
          </Col>
          <Col>
+            <br/>
             {
                teamResults && teamResults.length > 0 ? 
-                  <h1>hi</h1> : 
-                  <h1>No Team Results</h1>
+                  <>
+                     <h3>Team Results</h3>
+                     <br/> 
+                     <TeamList teams={teamResults} />
+                  </> : 
+                  <>
+                     <h3>No Team Results</h3>                  
+                  </>
             }
          </Col>
       </Row>
@@ -33,10 +44,10 @@ function ResultsContainer({query, teamResults, leagueResults}) {
 }
 
 const mapStateToProps = (state, {match}) => {
-      return {
-         teamResults: state.teamsReducer.teams.filter(team => team.name.toLowerCase().includes(match.params.query)),
-         leagueResults: state.leaguesReducer.leagues.filter(league => league.name.toLowerCase().includes(match.params.query))
-      }
+   return {
+      teamResults: state.teamsReducer.teams.filter(team => team.name.toLowerCase().includes(match.params.query)),
+      leagueResults: state.leaguesReducer.leagues.filter(league => league.name.toLowerCase().includes(match.params.query))
+   }
 }
 
 export default connect(mapStateToProps)(ResultsContainer)

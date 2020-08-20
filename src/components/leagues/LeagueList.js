@@ -19,9 +19,9 @@ function LeagueList({leagues}) {
    )
 
    return (
-      <div>
+      <>
          {list}
-      </div>
+      </>
    )
 }
 
