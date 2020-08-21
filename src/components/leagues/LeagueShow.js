@@ -3,9 +3,10 @@ import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { deleteLeague } from '../../actions/leagues'
 import { connect } from 'react-redux'
+import TeamList from '../teams/TeamList'
 
 
-function LeagueShow({history, match, leagues, deleteLeague, deleteErrors }) {
+function LeagueShow({history, match, leagues, deleteLeague, deleteErrors, teams }) {
 
    const league = leagues.find(league => league.id == match.params.leagueId)
 
@@ -56,7 +57,11 @@ function LeagueShow({history, match, leagues, deleteLeague, deleteErrors }) {
                      </Col>
                   </ButtonGroup>
             </Card>
-            }  
+            }
+
+            <hr/>
+            <h5>Teams</h5>
+            <TeamList teams={teams} /> 
 
          <Modal show={confirmShow}>
             <Modal.Header>
@@ -76,8 +81,9 @@ function LeagueShow({history, match, leagues, deleteLeague, deleteErrors }) {
    )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, {match}) => {
    return {
+      teams: state.teamsReducer.teams.filter(team => team.league.id == match.params.leagueId),
       deleteErrors: !!state.leaguesReducer.deleteErrors
    }
 }

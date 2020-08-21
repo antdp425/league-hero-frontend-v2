@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import TeamCard from './TeamCard'
 
-function TeamList({teams, match}) {
+function TeamList({teams}) {
 
    const list = teams.map(team => 
       <div key={team.id}>
