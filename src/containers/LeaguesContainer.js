@@ -43,10 +43,7 @@ function LeaguesContainer({match, leagues}) {
                 />
 
             <Route path={`${match.url}/:leagueId`} 
-                  render={(routerProps) => 
-                    <LeagueShow {...routerProps} leagues={leagues} />
-                  } 
-                  />
+                  render={(routerProps) => <LeagueShow {...routerProps} />} />
         </Switch>
       </>
    )

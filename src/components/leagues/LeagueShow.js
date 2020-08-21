@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { Card, ButtonGroup, Button, Col, Modal } from 'react-bootstrap'
+import { Card, ButtonGroup, Button, Col, Modal, Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { deleteLeague } from '../../actions/leagues'
 import { connect } from 'react-redux'
 import TeamList from '../teams/TeamList'
 
-
-function LeagueShow({history, match, leagues, deleteLeague, deleteErrors, teams }) {
-
-   const league = leagues.find(league => league.id == match.params.leagueId)
-
+function LeagueShow({history, match, deleteLeague, deleteErrors, teams, league}) {
+   
    const [confirmShow, setConfirmShow] = useState(false)
    const handleConfirm = () => setConfirmShow(true)
    const handleClose = () => setConfirmShow(false)
@@ -60,8 +57,16 @@ function LeagueShow({history, match, leagues, deleteLeague, deleteErrors, teams 
             }
 
             <hr/>
-            <h5>Teams</h5>
-            <TeamList teams={teams} /> 
+  
+            {teams.length > 0 ?
+               <> 
+                  <h5>Teams</h5>
+                  <TeamList teams={teams} />
+               </> : 
+               <>
+                  <i>No teams added to this league yet</i>
+               </>
+            }
 
          <Modal show={confirmShow}>
             <Modal.Header>
@@ -83,6 +88,7 @@ function LeagueShow({history, match, leagues, deleteLeague, deleteErrors, teams 
 
 const mapStateToProps = (state, {match}) => {
    return {
+      league: state.leaguesReducer.leagues.find(league => league.id == match.params.leagueId),
       teams: state.teamsReducer.teams.filter(team => team.league.id == match.params.leagueId),
       deleteErrors: !!state.leaguesReducer.deleteErrors
    }

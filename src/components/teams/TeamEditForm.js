@@ -109,7 +109,6 @@ const mapStateToProps = (state, {match}) => {
       league: state.leaguesReducer.leagues.find(league => league.id == match.params.leagueId),
       leagues: state.leaguesReducer.leagues,
       team: state.teamsReducer.teams.find(team => team.id == match.params.teamId),
-      teams: state.teamsReducer.teams,
       teamEditErrors: !!state.teamsReducer.teamEditErrors,
       errors: state.teamsReducer.errors
    }

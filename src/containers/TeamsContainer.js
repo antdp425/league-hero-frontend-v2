@@ -33,7 +33,7 @@ function TeamsContainer({match, leagues, teams}) {
 
         <Route path={`${match.url}/:teamId`} 
                render={(routerProps) => 
-                <TeamShow {...routerProps} teams={teams}/>} 
+                <TeamShow {...routerProps} />} 
               />
       </Switch>
       </>

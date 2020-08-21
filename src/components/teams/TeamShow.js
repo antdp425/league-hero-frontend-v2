@@ -5,10 +5,8 @@ import { connect } from 'react-redux'
 import { deleteTeam, clearFlags } from '../../actions/teams'
 
 
-function TeamShow({history, match, teams, deleteTeam, deleteErrors, clearFlags}) {
-
-   const team = teams.find(team => team.id == match.params.teamId)
-
+function TeamShow({history, match, team, deleteTeam, deleteErrors, clearFlags}) {
+   
    const [confirmShow, setConfirmShow] = useState(false)
    const handleConfirm = () => setConfirmShow(true)
    const handleClose = () => setConfirmShow(false)
@@ -69,8 +67,9 @@ function TeamShow({history, match, teams, deleteTeam, deleteErrors, clearFlags})
    )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, {match}) => {
    return {
+      team: state.teamsReducer.teams.find(team => team.id == match.params.teamId),
       deleteErrors: !!state.teamsReducer.deleteErrors
    }
 }
