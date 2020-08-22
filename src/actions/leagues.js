@@ -30,7 +30,7 @@ export const addLeague = (leagueInfo, history) => {
       .then(data => {
          return data.type === "ERROR_ADDING_LEAGUE" ? 
          null : 
-         history.push(`/leagues`) 
+         history.push(`/leagues/${data.payload.id}`) 
       })
    }
 }

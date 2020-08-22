@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))
 
-
 ReactDOM.render(
     <Provider store={store}>
         <App />
