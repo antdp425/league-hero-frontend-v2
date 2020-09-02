@@ -162,3 +162,8 @@ label{
   background: linear-gradient(to right top, #b20000, #96050b, #790c10, #5d0f11, #411010);
 }
 
+.loading{
+  margin-left: 50%;
+  margin-top: 15%;
+}
+

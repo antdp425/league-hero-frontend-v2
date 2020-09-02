@@ -1,7 +1,7 @@
 export const fetchTeams = () => {
    return (dispatch) => {
       dispatch({type: "FETCHING_TEAMS"})
-      fetch("/teams")
+      fetch(`https://league-hero-v2-api.herokuapp.com/teams`)
       .then(resp => resp.json())
       .then(data =>  dispatch({type: "TEAMS_FETCHED", payload: data}))
    }
@@ -20,7 +20,7 @@ export const addTeam = (teamInfo, history) => {
 
    return (dispatch) => {
       dispatch({type: "ADDING_TEAM"})
-      fetch("/teams/", configObj)
+      fetch("https://league-hero-v2-api.herokuapp.com/teams/", configObj)
       .then(resp => resp.json())
       .then(data => {
          return data.id ?
@@ -48,7 +48,7 @@ export const editTeam = (teamInfo, teamId, history) => {
 
    return (dispatch) => {
       dispatch({type: "EDITING_TEAM"})
-      fetch(`/teams/${teamId}`, configObj)
+      fetch(`https://league-hero-v2-api.herokuapp.com/teams/${teamId}`, configObj)
       .then(resp => resp.json())
       .then(data => {
          return data.id ? 
@@ -74,7 +74,7 @@ export const deleteTeam = (teamId) => {
 
    return (dispatch) => {
       dispatch({type: "DELETING_TEAM"})
-      fetch(`/teams/${teamId}`, configObj)
+      fetch(`https://league-hero-v2-api.herokuapp.com/teams/${teamId}`, configObj)
       .then(data => {
          data.ok ?
          dispatch({type: "TEAM_DELETED", payload: teamId}) :

@@ -8,8 +8,10 @@ import LeagueForm from '../components/leagues/LeagueForm';
 import LeagueEditForm from '../components/leagues/LeagueEditForm';
 import TeamEditForm from '../components/teams/TeamEditForm';
 import NewLeagueButton from '../components/leagues/NewLeagueButton';
+import Loading from '../components/Loading';
 
-function LeaguesContainer({match, leagues}) {
+
+function LeaguesContainer({match, leagues, leaguesLoading}) {
 
    return (
       <>        
@@ -23,7 +25,7 @@ function LeaguesContainer({match, leagues}) {
                     <Link to={`/leagues/new`}>
                       <NewLeagueButton />
                     </Link>
-                    <LeagueList {...routerProps} leagues={leagues} />
+                    {leaguesLoading ? <Loading /> : <LeagueList {...routerProps} leagues={leagues} />}
                   </>
                  }>
           </Route>
@@ -51,7 +53,8 @@ function LeaguesContainer({match, leagues}) {
 
 const mapStateToProps = (state) => {
    return {
-     leagues: state.leaguesReducer.leagues
+     leagues: state.leaguesReducer.leagues,
+     leaguesLoading: state.leaguesReducer.loading
    }
  }
  

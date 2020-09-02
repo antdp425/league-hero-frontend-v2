@@ -1,16 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import ActiveLeagues from '../components/home/ActiveLeagues';
+import Loading from '../components/Loading';
 
-
-function HomeContainer({leagues}) {
+function HomeContainer({leagues, leaguesLoading}) {
 
    return (
       <>
-         <br/>
-         <h4>Active Leagues</h4>
-         <br/>
-         <ActiveLeagues leagues={leagues}/>
+      <br/>
+         {leaguesLoading ? <Loading /> :<ActiveLeagues leagues={leagues}/>}
       </>
    )
 }

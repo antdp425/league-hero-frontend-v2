@@ -5,9 +5,9 @@ import TeamList from '../components/teams/TeamList'
 import TeamShow from '../components/teams/TeamShow';
 import TeamForm from '../components/teams/TeamForm';
 import NewTeamButton from '../components/teams/NewTeamButton';
+import Loading from '../components/Loading';
 
-
-function TeamsContainer({match, leagues, teams}) {
+function TeamsContainer({match, leagues, teams, teamsLoading}) {
 
    return (
      <>
@@ -21,7 +21,7 @@ function TeamsContainer({match, leagues, teams}) {
                     <Link to={`/teams/new`}>
                       <NewTeamButton />
                     </Link> 
-                    <TeamList {...routerProps} teams={teams} />
+                    {teamsLoading ? <Loading /> : <TeamList {...routerProps} teams={teams} />}
                   </>
                  }>
           </Route>
