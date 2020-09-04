@@ -4,15 +4,16 @@ import { Row, Col, Container} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function ActiveLeagues({leagues}) {
-   
-   const date = new Date()
-   const today = `${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`
-   let filtered = leagues.filter(league => 
-         (new Date(league.end_date) >= new Date(today)) && 
-         (new Date(league.start_date) <= new Date(today)))
+
+   const today = new Date()
+
+   let filtered = leagues.filter(league =>
+         (new Date(league.end_date) >= (today)) && 
+         (new Date(league.start_date) <= (today)))
+
    let sorted = filtered.sort((a,b) => { return new Date(a.start_date) - new Date(b.start_date)})
 
-   const activeLeagues = sorted.map(league =>
+   let activeLeagues = sorted.map(league =>
       <div key={league.id}>
          <Link to={`/leagues/${league.id}`}>
          <Row noGutters={true} className={"active-league"}>
