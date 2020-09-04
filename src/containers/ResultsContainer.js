@@ -45,8 +45,8 @@ function ResultsContainer({teamResults, leagueResults}) {
 
 const mapStateToProps = (state, {match}) => {
    return {
-      teamResults: state.teamsReducer.teams.filter(team => team.name.toLowerCase().includes(match.params.query)),
-      leagueResults: state.leaguesReducer.leagues.filter(league => league.name.toLowerCase().includes(match.params.query))
+      teamResults: state.teamsReducer.teams.filter(team => team.name.toLowerCase().includes(match.params.query.toLowerCase())),
+      leagueResults: state.leaguesReducer.leagues.filter(league => league.name.toLowerCase().includes(match.params.query.toLowerCase()))
    }
 }
 
