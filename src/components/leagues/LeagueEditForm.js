@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { editLeague, clearFlags} from '../../actions/leagues'
 import { useEffect } from 'react'
 import { Col, Button } from 'react-bootstrap'
+import "flatpickr/dist/themes/dark.css";
+import Flatpickr from "react-flatpickr";
 
 function LeagueEditForm({history, match, league, editLeague, leagueEditErrors, errors, clearFlags}) {
 
@@ -72,13 +74,14 @@ function LeagueEditForm({history, match, league, editLeague, leagueEditErrors, e
          }
 
          <label htmlFor="start_date">League Start: </label>
-            <input
-               id="start_date" 
-               name="start_date"
-               onChange={(e) => setLeagueStart(e.target.value)}
-               value={leagueStart} 
-               type="date"/>
-               <br/>
+         <Flatpickr 
+            value={leagueStart}
+            id="start_date" 
+            name="start_date"
+            placeholder="Select Start Date"
+            onChange={(e) => setLeagueStart(new Date(e))}            
+         />
+            <br/>
 
          { 
             (leagueEditErrors && errors.start_date ) && 
@@ -86,13 +89,14 @@ function LeagueEditForm({history, match, league, editLeague, leagueEditErrors, e
          }
 
          <label htmlFor="end_date">League End: </label>
-            <input 
-               id="end_date"
-               name="end_date"
-               onChange={(e) => setLeagueEnd(e.target.value)}
-               value={leagueEnd} 
-               type="date"/> 
-               <br/>
+         <Flatpickr 
+            value={leagueEnd}
+            id="end_date" 
+            name="end_date"
+            placeholder="Select End Date"
+            onChange={(e) => setLeagueEnd(new Date(e))}            
+         />
+            <br/>
          
          {  
             (leagueEditErrors && errors.end_date) && 
