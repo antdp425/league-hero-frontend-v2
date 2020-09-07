@@ -74,8 +74,11 @@ function LeagueEditForm({history, match, league, editLeague, leagueEditErrors, e
          }
 
          <label htmlFor="start_date">League Start: </label>
-         <Flatpickr 
-            value={leagueStart}
+         <Flatpickr
+            options={{
+               altInput: true,
+            }} 
+               value={leagueStart}
             id="start_date" 
             name="start_date"
             placeholder="Select Start Date"
@@ -90,6 +93,10 @@ function LeagueEditForm({history, match, league, editLeague, leagueEditErrors, e
 
          <label htmlFor="end_date">League End: </label>
          <Flatpickr 
+            options={{
+               altInput: true,
+               minDate: leagueStart || new Date()
+            }} 
             value={leagueEnd}
             id="end_date" 
             name="end_date"

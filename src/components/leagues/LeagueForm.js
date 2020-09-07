@@ -75,7 +75,11 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
          }
 
          <label htmlFor="start_date">League Start: </label>
-         <Flatpickr 
+         <Flatpickr
+            options={{
+               altInput: true,
+               minDate: new Date()
+            }} 
             value={leagueStart}
             id="start_date" 
             name="start_date"
@@ -90,7 +94,11 @@ function LeagueForm({history, match, leagues, addLeague, errors, leagueErrors}) 
          }
 
          <label htmlFor="end_date">League End: </label>
-         <Flatpickr 
+         <Flatpickr
+            options={{
+               altInput: true,
+               minDate: leagueStart || new Date()
+            }} 
             value={leagueEnd}
             id="end_date" 
             name="end_date"
