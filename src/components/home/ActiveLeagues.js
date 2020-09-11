@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 
 function ActiveLeagues({leagues}) {
 
-   const today = new Date()
+   const today = new Date().toISOString().split("T")[0].split("-")
 
    let filtered = leagues.filter(league =>
-         (new Date(league.end_date) >= (today)) && 
-         (new Date(league.start_date) <= (today)))
+         (new Date(league.end_date.split("-")) >= new Date(today)) && 
+         (new Date(league.start_date.split("-")) <= new Date(today)))
 
    let sorted = filtered.sort((a,b) => { return new Date(a.start_date) - new Date(b.start_date)})
 

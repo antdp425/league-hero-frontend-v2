@@ -1,7 +1,9 @@
+// https://league-hero-v2-api.herokuapp.com/
+const base = "http://localhost:3001/"
 export const fetchLeagues = () => {
    return (dispatch) => {
       dispatch({type: "FETCHING_LEAGUES"})
-      fetch(`https://league-hero-v2-api.herokuapp.com/leagues`)
+      fetch(`${base}leagues`)
       .then(resp => resp.json())
       .then(data => dispatch({type: "LEAGUES_FETCHED", payload: data}))
    }
@@ -20,7 +22,7 @@ export const addLeague = (leagueInfo, history) => {
 
    return (dispatch) => {
       dispatch({type: "ADDING_LEAGUE"})
-      fetch("https://league-hero-v2-api.herokuapp.com/leagues", configObj)
+      fetch(`${base}leagues`, configObj)
       .then(resp => resp.json())
       .then(data => {
          return data.id ?
@@ -47,7 +49,7 @@ export const editLeague = (leagueInfo, leagueId, history) => {
 
    return (dispatch) => {
       dispatch({type: "EDITING_LEAGUE"})
-      fetch(`https://league-hero-v2-api.herokuapp.com/leagues/${leagueId}`, configObj)
+      fetch(`${base}leagues/${leagueId}`, configObj)
       .then(resp => resp.json())
       .then(data => {
          return data.id ? 
@@ -73,7 +75,7 @@ export const deleteLeague = (leagueId) => {
 
    return (dispatch) => {
       dispatch({type: "DELETING_LEAGUE"})
-      fetch(`https://league-hero-v2-api.herokuapp.com/leagues/${leagueId}`, configObj)
+      fetch(`${base}leagues/${leagueId}`, configObj)
       .then(data => {
          data.ok ?
          dispatch({type: "LEAGUE_DELETED", payload: leagueId}) :
