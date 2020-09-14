@@ -1,4 +1,4 @@
-// https://league-hero-v2-api.herokuapp.com/
+// const base = "https://league-hero-v2-api.herokuapp.com/"
 const base = "http://localhost:3001/"
 export const fetchLeagues = () => {
    return (dispatch) => {

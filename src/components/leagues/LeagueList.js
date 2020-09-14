@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Alert, Button } from 'react-bootstrap'
 import LeagueCard from './LeagueCard'
+
 
 
 function LeagueList({leagues}) {
@@ -20,7 +21,16 @@ function LeagueList({leagues}) {
 
    return (
       <>
-         {list}
+         {
+            list.length >= 1 ?
+            list :
+            <>
+            <br/>
+               <Alert className={"text-center "} variant={"primary"}>
+                  No leagues, yet... 👻.
+               </Alert>
+            </>
+         }
       </>
    )
 }

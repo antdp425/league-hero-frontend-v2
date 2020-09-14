@@ -1,7 +1,8 @@
 import React from 'react'
 import LeagueDate from "./LeagueDate"
-import { Row, Col, Container} from 'react-bootstrap'
+import { Row, Col, Container, Alert, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 
 function ActiveLeagues({leagues}) {
 
@@ -30,10 +31,21 @@ function ActiveLeagues({leagues}) {
 
    return (
       <>
-         <h4>Active Leagues</h4>
-         <br/>
       <Container>
-         {activeLeagues}
+         {  
+            activeLeagues.length == 1 ?
+               <>
+               <h4>Active Leagues</h4>
+               <br/>
+               {activeLeagues} </> :
+               <Alert className={"text-center "} 
+                  variant={"primary"}>Your <b>Active Leagues</b> will appear here.
+                  <br/>
+                  <Link to={`/leagues/new`}>
+                     <Button className="mt-2" variant="dark" size="sm">Create League</Button>
+                    </Link>
+               </Alert>
+         }
       </Container>
       </>
    )
