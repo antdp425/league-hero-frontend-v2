@@ -2,9 +2,9 @@
 
 League Hero is a Soccer/Football League Management Solution that allows you to manage all aspects of your League.
 
-Walthrough: https://www.youtube.com/watch?v=iKzAO6eJhiU&feature=youtu.be
+Walthrough: https://bit.ly/3kGnl88
 
-Demo: https://unruffled-snyder-906c97.netlify.app/
+Demo: https://bit.ly/37REbx7
 
 Repo to v1 (Vanilla JS): https://github.com/antdp425/league-hero
 
