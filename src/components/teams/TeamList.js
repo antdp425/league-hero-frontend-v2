@@ -7,7 +7,7 @@ import NewTeamButton from './NewTeamButton'
 
 function TeamList({leagues, teams}) {
 
-   const list = teams.map(team => 
+   const list = teams.map(team =>
       <div key={team.id}>
          { 
             <Link to={`/teams/${team.id}`}> 
@@ -39,7 +39,7 @@ function TeamList({leagues, teams}) {
                      </Alert>
                   </>
                }
-            </>:
+            </> :
             
             <Alert className={"text-center "} variant={"primary"}>
              Your teams will appear here, but first create a league 👇

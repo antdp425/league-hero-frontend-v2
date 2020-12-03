@@ -30,7 +30,6 @@ export const addTeam = (teamInfo, history) => {
          dispatch({type: "ERROR_ADDING_TEAM", payload: data}) 
       })      
       .then(data => {
-         console.log(data)
          return data.type === "ERROR_ADDING_TEAM" ? 
          null : 
          history.push(`/teams`) 

@@ -3,7 +3,8 @@ import { Card, ButtonGroup, Button, Col, Modal, Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { deleteLeague } from '../../actions/leagues'
 import { connect } from 'react-redux'
-import TeamList from '../teams/TeamList'
+import LeagueTeamsList from './LeagueTeamsList'
+import NewTeamButton from '../teams/NewTeamButton'
 
 function LeagueShow({history, match, deleteLeague, deleteErrors, teams, league}) {
    
@@ -61,7 +62,7 @@ function LeagueShow({history, match, deleteLeague, deleteErrors, teams, league})
             {teams.length > 0 ?
                <> 
                   <h5>Teams</h5>
-                  <TeamList teams={teams} />
+                  <LeagueTeamsList teams={teams} />
                </> : 
                <>
                   <i>No teams added to this league yet</i>
