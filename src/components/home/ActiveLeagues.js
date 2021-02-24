@@ -33,7 +33,7 @@ function ActiveLeagues({leagues}) {
       <>
       <Container>
          {  
-            activeLeagues.length == 1 ?
+            activeLeagues.length >= 1 ?
                <>
                <h4>Active Leagues</h4>
                <br/>

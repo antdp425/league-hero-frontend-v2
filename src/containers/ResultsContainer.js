@@ -5,7 +5,7 @@ import TeamList from '../components/teams/TeamList'
 import { Row, Col } from 'react-bootstrap'
 
 function ResultsContainer({teamResults, leagueResults}) {
-
+   
    return (
       <>
       <br/>

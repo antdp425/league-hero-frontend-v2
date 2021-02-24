@@ -10,7 +10,7 @@ function LeagueDate({league}) {
    const date = new Date(league.start_date)
    const month = monthNames[date.getMonth()]
    const day = date.getUTCDate()
-
+   
    return (
       <Card className="card">
          <Card.Body className="league-date-body">
