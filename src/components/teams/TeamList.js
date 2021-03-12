@@ -20,44 +20,18 @@ function TeamList({ leagues, teams }) {
   ));
 
   return (
-<>
-    { teams && teams.length >= 1 ? list : (
-             <Alert>
-              <br />
-              <Alert className={"text-center "} variant={"primary"}>
-               No teams, yet... 👻.
-               </Alert>
-            </Alert>
-           )}
+    <>
+      {teams && teams.length >= 1 ? (
+        list
+      ) : (
+        <>
+          <br />
+          <Alert className={"text-center "} variant={"primary"}>
+            No teams, yet... 👻.
+          </Alert>
+        </>
+      )}
     </>
-
-    //   { leagues && leagues.length >= 1 ? (
-    //     <>
-    //       <Link to={`/teams/new`}>
-    //         <NewTeamButton />
-    //       </Link>
-    //       {teams && teams.length >= 1 ? (
-    //         list
-    //       ) : (
-    //         <Alert>
-    //           <br />
-    //           <Alert className={"text-center "} variant={"primary"}>
-    //             No teams, yet... 👻.
-    //           </Alert>
-    //         </Alert>
-    //       )}
-    //     </>
-    //   ) : (
-    //     <Alert className={"text-center "} variant={"primary"}>
-    //       Your teams will appear here, but first create a league 👇
-    //       <br />
-    //       <Link to={`/leagues/new`}>
-    //         <Button className="mt-2" variant="dark" size="sm">
-    //           Create League
-    //         </Button>
-    //       </Link>
-    //     </Alert>
-    //   )}
   );
 }
 
