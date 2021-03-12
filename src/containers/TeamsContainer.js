@@ -18,6 +18,7 @@ function TeamsContainer({match, leagues, teams, teamsLoading}) {
                     <br/> 
                     <h3>Teams</h3>
                     <br/>
+                    <NewTeamButton />
                     {teamsLoading ? <Loading /> : <TeamList {...routerProps} teams={teams} leagues={leagues}/>}
                   </>
                  }>
